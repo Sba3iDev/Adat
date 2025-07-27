@@ -5,20 +5,23 @@ import {
     faRuler,
     faQrcode,
     faDollarSign,
-    faClock,
     faEyeDropper,
     faCalculator,
     faSquareBinary,
+    faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
 function App() {
     return (
         <>
-            <div className="nav">
-                <span>Adat</span>
-                <span>Home</span>
-                <span>About</span>
+            <div className="header">
+                <div className="nav">
+                    <span>Adat</span>
+                </div>
+                <div className="search">
+                    <FontAwesomeIcon icon={faSearch} />
+                </div>
             </div>
             <div className="main-text">
                 <span className="primary-text">Discover highly useful Tools</span>
@@ -40,49 +43,43 @@ function App() {
                         <span>
                             <FontAwesomeIcon icon={faFile} />
                         </span>
-                        <span>tool2</span>
+                        <span>File Converter</span>
                     </div>
                     <div className="tool">
                         <span>
                             <FontAwesomeIcon icon={faRuler} />
                         </span>
-                        <span>tool3</span>
+                        <span>Unit Converter</span>
                     </div>
                     <div className="tool">
                         <span>
                             <FontAwesomeIcon icon={faQrcode} />
                         </span>
-                        <span>tool4</span>
+                        <span>QR Code</span>
                     </div>
                     <div className="tool">
                         <span>
                             <FontAwesomeIcon icon={faDollarSign} />
                         </span>
-                        <span>tool5</span>
+                        <span>Currency Converter</span>
                     </div>
                     <div className="tool">
                         <span>
                             <FontAwesomeIcon icon={faCalculator} />
                         </span>
-                        <span>tool6</span>
+                        <span>Calculator</span>
                     </div>
                     <div className="tool">
                         <span>
                             <FontAwesomeIcon icon={faEyeDropper} />
                         </span>
-                        <span>tool7</span>
-                    </div>
-                    <div className="tool">
-                        <span>
-                            <FontAwesomeIcon icon={faClock} />
-                        </span>
-                        <span>tool8</span>
+                        <span>Color Picker</span>
                     </div>
                     <div className="tool">
                         <span>
                             <FontAwesomeIcon icon={faSquareBinary} />
                         </span>
-                        <span>tool9</span>
+                        <span>Numeral System</span>
                     </div>
                     <div className="tool">
                         <span>
@@ -119,6 +116,18 @@ function App() {
                             <FontAwesomeIcon icon={faLock} />
                         </span>
                         <span>tool15</span>
+                    </div>
+                    <div className="tool">
+                        <span>
+                            <FontAwesomeIcon icon={faLock} />
+                        </span>
+                        <span>tool16</span>
+                    </div>
+                    <div className="tool">
+                        <span>
+                            <FontAwesomeIcon icon={faLock} />
+                        </span>
+                        <span>tool17</span>
                     </div>
                 </div>
             </div>
