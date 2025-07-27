@@ -13,7 +13,12 @@ body {
 .header {
     display: flex;
     align-items: center;
-    margin: 20px 50px;
+    justify-content: center;
+    margin: 20px 0px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 .header .nav {
@@ -22,7 +27,7 @@ body {
     background-color: var(--card-bg);
     border-radius: 16px;
     box-shadow: var(--hover-shadow);
-    margin: 0px 10px;
+    margin: 0px 5px;
 }
 
 .header .nav span {
@@ -39,7 +44,7 @@ body {
     box-shadow: var(--hover-shadow);
     cursor: pointer;
     font-size: 24px;
-    margin: 0px 10px;
+    margin: 0px 5px;
     transition: all 0.2s ease;
 }
 .header .search:hover {
@@ -50,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 80px auto;
+    margin: 200px auto 80px;
     padding: 0 20px;
     max-width: 800px;
 }
@@ -104,4 +109,24 @@ body {
 .tool span:last-child {
     font-weight: 500;
     color: var(--primary-text-color);
+}
+
+.move-up {
+    display: none;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    box-shadow: var(--hover-shadow);
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.move-up .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

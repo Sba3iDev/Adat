@@ -9,6 +9,7 @@ import {
     faCalculator,
     faSquareBinary,
     faSearch,
+    faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
@@ -130,6 +131,9 @@ function App() {
                         <span>tool17</span>
                     </div>
                 </div>
+            </div>
+            <div className="move-up">
+                <FontAwesomeIcon className="arrow" icon={faArrowUp} />
             </div>
         </>
     );
