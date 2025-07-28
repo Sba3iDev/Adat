@@ -1,6 +1,6 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faLock } from "@fortawesome/free-solid-svg-icons";
-import "../styles/currency.css";
+import "../app.css";
 
 function CurrencyConverter() {
     return <div>currency</div>;

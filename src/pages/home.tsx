@@ -12,7 +12,7 @@ import {
     faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import "../styles/home.css";
+import "../app.css";
 
 function Home() {
     return (

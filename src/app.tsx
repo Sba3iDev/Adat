@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Password from "./pages/password";
-import FileConverter from "./pages/fileconverter";
+import FileConverter from "./pages/fileConverter";
 import UnitConverter from "./pages/unitConverter";
 import QrCode from "./pages/qrCode";
 import CurrencyConverter from "./pages/currency";
