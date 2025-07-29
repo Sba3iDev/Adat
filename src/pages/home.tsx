@@ -6,7 +6,6 @@ import {
     faQrcode,
     faDollarSign,
     faEyeDropper,
-    faCalculator,
     faSquareBinary,
     faSearch,
     faLanguage,
@@ -42,11 +41,6 @@ const tools = [
         icon: faDollarSign,
     },
     {
-        path: "/calculator",
-        name: "Calculator",
-        icon: faCalculator,
-    },
-    {
         path: "/color-picker",
         name: "Color Picker",
         icon: faEyeDropper,
@@ -68,7 +62,7 @@ function Home() {
         <>
             <div className="header">
                 <div className="nav">
-                    <Link className="title" key={"/"} to={"/"}>
+                    <Link className="title" to="/">
                         Adat
                     </Link>
                 </div>

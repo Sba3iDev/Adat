@@ -239,7 +239,6 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .generate-btn:hover {
     background-color: #464646;
 }
