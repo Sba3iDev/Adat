@@ -8,6 +8,7 @@
 
 body {
     background-color: var(--primary-background-color);
+    height: 5500px;
 }
 
 .header {
@@ -28,9 +29,28 @@ body {
     border-radius: 16px;
     box-shadow: var(--hover-shadow);
     margin: 0px 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.header .nav span {
+.header .nav .title {
+    color: var(--primary-text-color);
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.header .nav .tool-title {
+    color: var(--primary-text-color);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0px auto;
+}
+
+.header .nav .back-arrow {
+    position: absolute;
+    left: 10px;
     color: var(--primary-text-color);
     font-size: 24px;
     font-weight: 700;
@@ -38,6 +58,9 @@ body {
 }
 
 .header .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 15px;
     background-color: var(--card-bg);
     border-radius: 16px;
@@ -101,18 +124,18 @@ body {
     box-shadow: var(--hover-shadow);
 }
 
-.tool span:first-child {
+.tool .icon {
     font-size: 24px;
     display: block;
-    margin-bottom: 10px;
+    margin: 0px auto 10px;
 }
-.tool span:last-child {
+
+.tool span {
     font-weight: 500;
     color: var(--primary-text-color);
 }
 
 .move-up {
-    display: none;
     position: fixed;
     right: 15px;
     bottom: 15px;
@@ -122,6 +145,16 @@ body {
     font-size: 20px;
     width: 50px;
     height: 50px;
+    z-index: 2000;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+.move-up:hover {
+    background-color: var(--primary-background-color);
+}
+.move-up.visible {
+    opacity: 1;
+    cursor: pointer;
 }
 
 .move-up .arrow {

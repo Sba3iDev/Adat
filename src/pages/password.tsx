@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import "../app.css";
 
 function Password() {
@@ -7,7 +8,10 @@ function Password() {
         <>
             <div className="header">
                 <div className="nav">
-                    <span>Adat</span>
+                    <Link className="back-arrow" key={"/"} to={"/"}>
+                        <FontAwesomeIcon icon={faAngleLeft} />
+                    </Link>
+                    <span className="tool-title">Password Generator</span>
                 </div>
                 <div className="search">
                     <FontAwesomeIcon icon={faSearch} />
