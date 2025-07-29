@@ -20,7 +20,7 @@ function App() {
             <Route path="/currency-converter" element={<CurrencyConverter />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/color-picker" element={<ColorPicker />} />
-            <Route path="/numearl-system" element={<Numeral />} />
+            <Route path="/numeral-system" element={<Numeral />} />
         </Routes>
     );
 }

@@ -9,10 +9,59 @@ import {
     faCalculator,
     faSquareBinary,
     faSearch,
+    faLanguage,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
 import "../app.css";
+
+const tools = [
+    {
+        path: "/password-generator",
+        name: "Password Generator",
+        icon: faLock,
+    },
+    {
+        path: "/file-converter",
+        name: "File Converter",
+        icon: faFile,
+    },
+    {
+        path: "/unit-converter",
+        name: "Unit Converter",
+        icon: faRuler,
+    },
+    {
+        path: "/qr-code",
+        name: "QR Code Generator",
+        icon: faQrcode,
+    },
+    {
+        path: "/currency-converter",
+        name: "Currency Converter",
+        icon: faDollarSign,
+    },
+    {
+        path: "/calculator",
+        name: "Calculator",
+        icon: faCalculator,
+    },
+    {
+        path: "/color-picker",
+        name: "Color Picker",
+        icon: faEyeDropper,
+    },
+    {
+        path: "/numeral-system",
+        name: "Numeral System",
+        icon: faSquareBinary,
+    },
+    {
+        path: "/translator",
+        name: "Translator",
+        icon: faLanguage,
+    },
+];
 
 function Home() {
     return (
@@ -37,70 +86,12 @@ function Home() {
             </div>
             <div className="tools-container">
                 <div className="tools">
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>Password Generator</span>
-                    </Link>
-                    <Link className="tool" key={"/file-converter"} to={"/file-converter"}>
-                        <FontAwesomeIcon className="icon" icon={faFile} />
-                        <span>File Converter</span>
-                    </Link>
-                    <Link className="tool" key={"/unit-converter"} to={"/unit-converter"}>
-                        <FontAwesomeIcon className="icon" icon={faRuler} />
-                        <span>Unit Converter</span>
-                    </Link>
-                    <Link className="tool" key={"/qr-code"} to={"/qr-code"}>
-                        <FontAwesomeIcon className="icon" icon={faQrcode} />
-                        <span>QR Code</span>
-                    </Link>
-                    <Link className="tool" key={"/currency-converter"} to={"/currency-converter"}>
-                        <FontAwesomeIcon className="icon" icon={faDollarSign} />
-                        <span>Currency Converter</span>
-                    </Link>
-                    <Link className="tool" key={"/calculator"} to={"/calculator"}>
-                        <FontAwesomeIcon className="icon" icon={faCalculator} />
-                        <span>Calculator</span>
-                    </Link>
-                    <Link className="tool" key={"/color-picker"} to={"/color-picker"}>
-                        <FontAwesomeIcon className="icon" icon={faEyeDropper} />
-                        <span>Color Picker</span>
-                    </Link>
-                    <Link className="tool" key={"/numearl-system"} to={"/numearl-system"}>
-                        <FontAwesomeIcon className="icon" icon={faSquareBinary} />
-                        <span>Numeral System</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool10</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool11</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool12</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool13</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool14</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool15</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool16</span>
-                    </Link>
-                    <Link className="tool" key={"/password-generator"} to={"/password-generator"}>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
-                        <span>tool17</span>
-                    </Link>
+                    {tools.map((tool) => (
+                        <Link className="tool" to={tool.path} key={tool.path}>
+                            <FontAwesomeIcon className="icon" icon={tool.icon} />
+                            <span>{tool.name}</span>
+                        </Link>
+                    ))}
                 </div>
             </div>
             <ScrollToTopButton />

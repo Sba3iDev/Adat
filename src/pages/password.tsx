@@ -1,21 +1,93 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../app.css";
 
+function GeneratePassword(length: number, useUpper: boolean, useLower: boolean, useNumbers: boolean, useSymbols: boolean) {
+    const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lower = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?/";
+    let charSet = "";
+    if (useUpper) charSet += upper;
+    if (useLower) charSet += lower;
+    if (useNumbers) charSet += numbers;
+    if (useSymbols) charSet += symbols;
+    if (!charSet) return "";
+    return Array.from({ length }, () => charSet[Math.floor(Math.random() * charSet.length)]).join("");
+}
+
 function Password() {
+    const [length, setLength] = useState(16);
+    const [includeUpper, setIncludeUpper] = useState(true);
+    const [includeLower, setIncludeLower] = useState(true);
+    const [includeNumbers, setIncludeNumbers] = useState(true);
+    const [includeSymbols, setIncludeSymbols] = useState(true);
+    const [password, setPassword] = useState("");
+    const generate = () => {
+        const newPass = GeneratePassword(length, includeUpper, includeLower, includeNumbers, includeSymbols);
+        setPassword(newPass);
+    };
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(password);
+    };
     return (
         <>
             <div className="header">
                 <div className="nav">
-                    <Link className="back-arrow" key={"/"} to={"/"}>
+                    <Link className="back-arrow" to="/">
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </Link>
                     <span className="tool-title">Password Generator</span>
                 </div>
-                <div className="search">
-                    <FontAwesomeIcon icon={faSearch} />
+            </div>
+            <div className="password-tool">
+                <div className="tool-info">
+                    <span>Customize your password</span>
                 </div>
+                <div className="password-display">
+                    <input value={password} readOnly />
+                    <button onClick={copyToClipboard}>
+                        <FontAwesomeIcon icon={faCopy} />
+                    </button>
+                </div>
+                <div className="options">
+                    <label>
+                        Length:
+                        <input
+                            type="number"
+                            min="4"
+                            max="50"
+                            value={length}
+                            onChange={(e) => setLength(Number(e.target.value))}
+                            onBlur={(e) => {
+                                const val = Number(e.target.value);
+                                if (isNaN(val)) return;
+                                setLength(Math.max(Number(e.target.min), Math.min(Number(e.target.max), val)));
+                            }}
+                        />
+                    </label>
+                    <label>
+                        <input type="checkbox" checked={includeUpper} onChange={() => setIncludeUpper(!includeUpper)} />
+                        Uppercase
+                    </label>
+                    <label>
+                        <input type="checkbox" checked={includeLower} onChange={() => setIncludeLower(!includeLower)} />
+                        Lowercase
+                    </label>
+                    <label>
+                        <input type="checkbox" checked={includeNumbers} onChange={() => setIncludeNumbers(!includeNumbers)} />
+                        Numbers
+                    </label>
+                    <label>
+                        <input type="checkbox" checked={includeSymbols} onChange={() => setIncludeSymbols(!includeSymbols)} />
+                        Symbols
+                    </label>
+                </div>
+                <button className="generate-btn" onClick={generate}>
+                    Generate Password
+                </button>
             </div>
         </>
     );
