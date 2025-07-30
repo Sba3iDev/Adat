@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
-import mammoth from "mammoth";
-import { PDFDocument } from "pdf-lib";
 import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +11,6 @@ const conversionOptions = {
     image: ["png", "jpg", "webp", "bmp", "gif"],
     video: ["mp4", "avi", "webm", "mov", "mkv"],
     audio: ["mp3", "wav", "aac", "ogg", "flac"],
-    document: ["pdf", "docx", "txt"],
 };
 
 function GetFileType(file: File) {
@@ -21,7 +18,6 @@ function GetFileType(file: File) {
     if (type.startsWith("image/")) return "image";
     if (type.startsWith("video/")) return "video";
     if (type.startsWith("audio/")) return "audio";
-    if (type === "application/pdf" || type.includes("word") || type.includes("text")) return "document";
     return "unknown";
 }
 
@@ -30,6 +26,7 @@ function FileConverter() {
     const [fileType, setFileType] = useState("");
     const [targetFormat, setTargetFormat] = useState("");
     const [loading, setLoading] = useState(false);
+    const [failed, setFailed] = useState(false);
     function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
         const selected = e.target.files?.[0];
         if (!selected) return;
@@ -40,6 +37,7 @@ function FileConverter() {
     async function Convert() {
         if (!file || !targetFormat) return;
         setLoading(true);
+        setFailed(false);
         const baseName = file.name.split(".").slice(0, -1).join(".");
         const outputName = `${baseName}.${targetFormat}`;
         try {
@@ -50,29 +48,10 @@ function FileConverter() {
                 const data = ffmpeg.FS("readFile", outputName);
                 const blob = new Blob([data.buffer], { type: file.type });
                 saveAs(blob, outputName);
-            } else if (fileType === "document") {
-                if (targetFormat === "txt") {
-                    const text = await file.text();
-                    const blob = new Blob([text], { type: "text/plain" });
-                    saveAs(blob, outputName);
-                } else if (targetFormat === "pdf") {
-                    const pdfDoc = await PDFDocument.create();
-                    const page = pdfDoc.addPage([600, 400]);
-                    const text = await file.text();
-                    page.drawText(text.slice(0, 500), { x: 50, y: 350 });
-                    const pdfBytes = await pdfDoc.save();
-                    saveAs(new Blob([pdfBytes], { type: "application/pdf" }), outputName);
-                } else if (targetFormat === "docx") {
-                    const result = await mammoth.convertToHtml({ arrayBuffer: await file.arrayBuffer() });
-                    const blob = new Blob([result.value], {
-                        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    });
-                    saveAs(blob, outputName);
-                }
             }
         } catch (err) {
-            alert("Conversion failed. Check console for details.");
             console.error(err);
+            setFailed(true);
         }
         setLoading(false);
     }
@@ -87,17 +66,21 @@ function FileConverter() {
                 </div>
             </div>
             <div className="file-converter-tool">
-                <input type="file" onChange={handleFileChange} />
+                <div className="drop-zone">
+                    <input type="file" id="fileInput" onChange={handleFileChange} />
+                    <label htmlFor="fileInput">Click or drag file here to upload</label>
+                </div>
                 {file && (
-                    <>
-                        <div className="file-info">
-                            <strong>File:</strong> {file.name} <br />
-                            <strong>Type:</strong> {fileType}
+                    <div className="file-details">
+                        <div className="preview">
+                            <span>{file.name}</span>
+                            <span className={`failed-msg ${failed ? "visible" : ""}`}>Failed</span>
+                            <span className="file-type">{fileType.toUpperCase()}</span>
                         </div>
                         <div className="format-select">
                             <label>Convert to:</label>
                             <select value={targetFormat} onChange={(e) => setTargetFormat(e.target.value)}>
-                                <option value="">-- Select Format --</option>
+                                <option value="">Select format</option>
                                 {conversionOptions[fileType as keyof typeof conversionOptions]?.map((fmt) => (
                                     <option key={fmt} value={fmt}>
                                         {fmt.toUpperCase()}
@@ -106,9 +89,9 @@ function FileConverter() {
                             </select>
                         </div>
                         <button onClick={Convert} disabled={loading || !targetFormat}>
-                            {loading ? "Converting..." : "Convert File"}
+                            {loading ? "Converting..." : "Convert"}
                         </button>
-                    </>
+                    </div>
                 )}
             </div>
         </>
