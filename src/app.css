@@ -18,7 +18,7 @@ body {
     margin: 20px 0px;
 }
 
-.header .nav {
+.nav {
     padding: 15px 40px;
     width: 90%;
     background-color: var(--card-bg);
@@ -30,21 +30,21 @@ body {
     align-items: center;
 }
 
-.header .nav .title {
+.nav .title {
     color: var(--primary-text-color);
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;
 }
 
-.header .nav .tool-title {
+.nav .tool-title {
     color: var(--primary-text-color);
     font-size: 24px;
     font-weight: 700;
     margin: 0px auto;
 }
 
-.header .nav .back-arrow {
+.nav .back-arrow {
     position: absolute;
     left: 10px;
     color: var(--primary-text-color);
@@ -53,7 +53,7 @@ body {
     cursor: pointer;
 }
 
-.header .search {
+.search {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +66,7 @@ body {
     margin: 0px 5px;
     transition: all 0.2s ease;
 }
-.header .search:hover {
+.search:hover {
     transform: scale(1.1);
 }
 
@@ -79,14 +79,14 @@ body {
     max-width: 800px;
 }
 
-.main-text .primary-text {
+.primary-text {
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--primary-text-color);
 }
 
-.main-text .secondary-text {
+.secondary-text {
     font-size: 18px;
     color: var(--secondary-text-color);
     line-height: 1.6;
@@ -145,12 +145,12 @@ body {
     transition: all 0.3s ease;
     opacity: 0;
 }
-.move-up:hover {
-    background-color: var(--primary-background-color);
-}
 .move-up.visible {
     opacity: 1;
     cursor: pointer;
+}
+.move-up:hover {
+    background-color: var(--primary-background-color);
 }
 
 .move-up .arrow {
@@ -160,7 +160,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.password-tool {
+.tool-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,19 +173,19 @@ body {
     box-shadow: var(--hover-shadow);
 }
 
-.password-tool .tool-info {
+.tool-info {
     font-size: 30px;
     margin-bottom: 50px;
 }
 
-.password-tool .password-display {
+.password-display {
     display: flex;
     width: 80%;
     align-items: center;
     gap: 10px;
 }
 
-.password-tool .password-display input {
+.password-display input {
     flex: 1;
     padding: 10px;
     font-size: 18px;
@@ -194,7 +194,7 @@ body {
     outline: none;
 }
 
-.password-tool .password-display button {
+.password-display button {
     background-color: var(--card-bg);
     font-size: 25px;
     border: none;
@@ -203,11 +203,11 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.password-tool .password-display button:hover {
+.password-display button:hover {
     background-color: var(--primary-background-color);
 }
 
-.password-tool .options {
+.password-options {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -215,13 +215,13 @@ body {
     font-size: 16px;
 }
 
-.password-tool .options label {
+.password-options label {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.password-tool .options input[type="number"] {
+.password-options input[type="number"] {
     width: 60px;
     padding: 5px;
     border: 1px solid #dddddd;
@@ -229,9 +229,9 @@ body {
     font-size: 16px;
 }
 
-.password-tool .generate-btn {
+.password-generate-btn {
     background-color: var(--primary-text-color);
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 12px 24px;
     font-size: 16px;
@@ -239,52 +239,37 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.password-tool .generate-btn:hover {
+.password-generate-btn:hover {
     background-color: #464646;
 }
 
-.file-converter-tool {
-    max-width: 600px;
-    margin: 80px auto;
-    padding: 40px;
-    background-color: var(--card-bg);
-    border-radius: 20px;
-    box-shadow: var(--hover-shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-}
-
-.file-converter-tool .drop-zone {
-    width: 100%;
-    border: 2px dashed #cccccc;
-    border-radius: 12px;
-    padding: 40px 20px;
-    text-align: center;
-    color: #888888;
-    font-size: 18px;
+.file-upload-btn {
+    background-color: var(--primary-text-color);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
     cursor: pointer;
-    position: relative;
-    transition: border 0.3s;
+    transition: all 0.3s ease;
 }
-.file-converter-tool .drop-zone:hover {
-    border-color: #e74c3c;
+.tool-container .file-upload-btn:hover {
+    background-color: #464646;
 }
 
-.file-converter-tool .drop-zone input[type="file"] {
+.file-upload-btn input[type="file"] {
     display: none;
 }
 
-.file-converter-tool .file-details {
-    width: 100%;
+.file-details {
+    width: 50%;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.file-converter-tool .file-details .preview {
+.file-preview {
     font-size: 18px;
     color: #333333;
     font-weight: 500;
@@ -293,15 +278,15 @@ body {
     align-items: center;
 }
 
-.file-converter-tool .file-details .preview .failed-msg {
+.failed-msg {
     color: #ff0000;
     display: none;
 }
-.file-converter-tool .file-details .preview .failed-msg.visible {
+.failed-msg.visible {
     display: block;
 }
 
-.file-converter-tool .file-details .preview .file-type {
+.file-type {
     padding: 6px 12px;
     background-color: #e74c3c;
     color: #ffffff;
@@ -310,14 +295,14 @@ body {
     font-weight: bold;
 }
 
-.file-converter-tool .file-details .format-select {
+.format-select {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.file-converter-tool .file-details .format-select select {
+.format-select select {
     padding: 10px 15px;
     border: 1px solid #cccccc;
     border-radius: 10px;
@@ -325,17 +310,16 @@ body {
     width: 200px;
 }
 
-.file-converter-tool .file-details button {
-    background-color: #e74c3c;
+.file-details button {
+    background-color: var(--primary-text-color);
     color: #ffffff;
-    padding: 12px 30px;
     border: none;
-    border-radius: 10px;
+    padding: 12px 24px;
     font-size: 16px;
-    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
-.file-converter-tool .file-details button:hover {
-    background-color: #c0392b;
+.file-details button:hover {
+    background-color: #464646;
 }

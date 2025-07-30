@@ -9,7 +9,7 @@ import "../app.css";
 const ffmpeg = createFFmpeg();
 const conversionOptions = {
     image: ["png", "jpg", "webp", "bmp", "gif"],
-    video: ["mp4", "avi", "webm", "mov", "mkv"],
+    video: ["mp4", "avi", "webm", "mov", "mkv", "gg"],
     audio: ["mp3", "wav", "aac", "ogg", "flac"],
 };
 
@@ -65,14 +65,17 @@ function FileConverter() {
                     <span className="tool-title">File Converter</span>
                 </div>
             </div>
-            <div className="file-converter-tool">
-                <div className="drop-zone">
+            <div className="tool-container">
+                <div className="tool-info">
+                    <span>Upload your media to convet it</span>
+                </div>
+                <div className="file-upload-btn">
                     <input type="file" id="fileInput" onChange={handleFileChange} />
-                    <label htmlFor="fileInput">Click or drag file here to upload</label>
+                    <label htmlFor="fileInput">Click here to upload</label>
                 </div>
                 {file && (
                     <div className="file-details">
-                        <div className="preview">
+                        <div className="file-preview">
                             <span>{file.name}</span>
                             <span className={`failed-msg ${failed ? "visible" : ""}`}>Failed</span>
                             <span className="file-type">{fileType.toUpperCase()}</span>

@@ -42,7 +42,7 @@ function Password() {
                     <span className="tool-title">Password Generator</span>
                 </div>
             </div>
-            <div className="password-tool">
+            <div className="tool-container">
                 <div className="tool-info">
                     <span>Customize your password</span>
                 </div>
@@ -52,7 +52,7 @@ function Password() {
                         <FontAwesomeIcon icon={faCopy} />
                     </button>
                 </div>
-                <div className="options">
+                <div className="password-options">
                     <label>
                         Length:
                         <input
@@ -85,7 +85,7 @@ function Password() {
                         Symbols
                     </label>
                 </div>
-                <button className="generate-btn" onClick={generate}>
+                <button className="password-generate-btn" onClick={generate}>
                     Generate Password
                 </button>
             </div>
