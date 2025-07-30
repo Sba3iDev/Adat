@@ -242,3 +242,54 @@ body {
 .generate-btn:hover {
     background-color: #464646;
 }
+
+.file-converter-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto;
+    gap: 20px;
+    width: 80%;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--hover-shadow);
+}
+
+.file-converter-tool input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.file-info {
+    font-size: 16px;
+    color: var(--primary-text-color);
+    text-align: center;
+}
+
+.format-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.format-select select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.file-converter-tool button {
+    background-color: var(--primary-text-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.file-converter-tool button:hover {
+    background-color: #464646;
+}
