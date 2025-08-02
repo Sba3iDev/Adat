@@ -323,3 +323,66 @@ body {
 .file-details button:hover {
     background-color: #464646;
 }
+
+.unit-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.unit-options label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+}
+
+.unit-options select,
+.unit-options input[type="number"] {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    min-width: 150px;
+}
+
+.convert-btn {
+    background-color: var(--primary-text-color);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+.convert-btn:hover {
+    background-color: #464646;
+}
+
+.result {
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.result span {
+    margin-right: 30px;
+}
+
+.converted-result {
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: var(--primary-text-color);
+    text-align: center;
+}

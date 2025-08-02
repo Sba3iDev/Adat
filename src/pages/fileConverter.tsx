@@ -9,7 +9,7 @@ import "../app.css";
 const ffmpeg = createFFmpeg();
 const conversionOptions = {
     image: ["png", "jpg", "webp", "bmp", "gif"],
-    video: ["mp4", "avi", "webm", "mov", "mkv", "gg"],
+    video: ["mp4", "avi", "webm", "mov", "mkv"],
     audio: ["mp3", "wav", "aac", "ogg", "flac"],
 };
 
@@ -66,9 +66,7 @@ function FileConverter() {
                 </div>
             </div>
             <div className="tool-container">
-                <div className="tool-info">
-                    <span>Upload your media to convet it</span>
-                </div>
+                <div className="tool-info">Upload your media to convet it</div>
                 <div className="file-upload-btn">
                     <input type="file" id="fileInput" onChange={handleFileChange} />
                     <label htmlFor="fileInput">Click here to upload</label>

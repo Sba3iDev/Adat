@@ -43,9 +43,7 @@ function Password() {
                 </div>
             </div>
             <div className="tool-container">
-                <div className="tool-info">
-                    <span>Customize your password</span>
-                </div>
+                <div className="tool-info">Customize your password</div>
                 <div className="password-display">
                     <input value={password} readOnly />
                     <button onClick={copyToClipboard}>
