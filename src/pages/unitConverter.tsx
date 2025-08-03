@@ -15,12 +15,12 @@ function UnitConverter() {
     const [convertedValue, setConvertedValue] = useState<string>("");
     useEffect(() => {
         const allMeasures = convert().measures();
-        setCategories(allMeasures.map(capitalize));
-        setSelectedCategory(capitalize(allMeasures[0]));
+        setCategories(allMeasures.map((str: string) => str.charAt(0).toUpperCase() + str.slice(1)));
+        setSelectedCategory(((str: string) => str.charAt(0).toUpperCase() + str.slice(1))(allMeasures[0]));
     }, []);
     useEffect(() => {
         if (selectedCategory) {
-            const raw = selectedCategory.toLowerCase();
+            const raw = selectedCategory[0].toLowerCase() + selectedCategory.slice(1);
             const units = convert().possibilities(raw as Measure);
             setAvailableUnits(units);
             setFromUnit(units[0]);
@@ -37,7 +37,6 @@ function UnitConverter() {
             setConvertedValue("Invalid conversion");
         }
     };
-    const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
     return (
         <>
             <div className="header">
@@ -53,7 +52,13 @@ function UnitConverter() {
                 <div className="unit-options">
                     <label>
                         Category:
-                        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+                        <select
+                            value={selectedCategory}
+                            onChange={(e) => {
+                                setSelectedCategory(e.target.value);
+                                setConvertedValue("");
+                            }}
+                        >
                             {categories.map((cat) => (
                                 <option key={cat} value={cat}>
                                     {cat}
@@ -63,7 +68,13 @@ function UnitConverter() {
                     </label>
                     <label>
                         From:
-                        <select value={fromUnit} onChange={(e) => setFromUnit(e.target.value)}>
+                        <select
+                            value={fromUnit}
+                            onChange={(e) => {
+                                setFromUnit(e.target.value);
+                                setConvertedValue("");
+                            }}
+                        >
                             {availableUnits.map((unit) => (
                                 <option key={unit} value={unit}>
                                     {unit}
@@ -73,7 +84,13 @@ function UnitConverter() {
                     </label>
                     <label>
                         To:
-                        <select value={toUnit} onChange={(e) => setToUnit(e.target.value)}>
+                        <select
+                            value={toUnit}
+                            onChange={(e) => {
+                                setToUnit(e.target.value);
+                                setConvertedValue("");
+                            }}
+                        >
                             {availableUnits.map((unit) => (
                                 <option key={unit} value={unit}>
                                     {unit}
