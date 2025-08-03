@@ -16,6 +16,7 @@
         "@fortawesome/react-fontawesome": "^0.2.3",
         "convert-units": "^2.3.4",
         "file-saver": "^2.0.5",
+        "qrcode.react": "^4.2.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "react-router-dom": "^7.7.1"
