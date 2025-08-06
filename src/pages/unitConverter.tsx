@@ -2,36 +2,44 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Select from "react-select";
 import convert, { type Measure, type Unit } from "convert-units";
 import "../app.css";
 
 function UnitConverter() {
-    const [categories, setCategories] = useState<string[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>("Length");
-    const [availableUnits, setAvailableUnits] = useState<string[]>([]);
-    const [fromUnit, setFromUnit] = useState<string>("");
-    const [toUnit, setToUnit] = useState<string>("");
+    const [categories, setCategories] = useState<{ value: string; label: string }[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<{ value: string; label: string } | null>(null);
+    const [availableUnits, setAvailableUnits] = useState<{ value: string; label: string }[]>([]);
+    const [fromUnit, setFromUnit] = useState<{ value: string; label: string } | null>(null);
+    const [toUnit, setToUnit] = useState<{ value: string; label: string } | null>(null);
     const [inputValue, setInputValue] = useState<number>(1);
     const [convertedValue, setConvertedValue] = useState<string>("");
     useEffect(() => {
         const allMeasures = convert().measures();
-        setCategories(allMeasures.map((str: string) => str.charAt(0).toUpperCase() + str.slice(1)));
-        setSelectedCategory(((str: string) => str.charAt(0).toUpperCase() + str.slice(1))(allMeasures[0]));
+        const formatted = allMeasures.map((m) => ({
+            value: m,
+            label: m.charAt(0).toUpperCase() + m.slice(1),
+        }));
+        setCategories(formatted);
+        setSelectedCategory(formatted[0]);
     }, []);
     useEffect(() => {
         if (selectedCategory) {
-            const raw = selectedCategory[0].toLowerCase() + selectedCategory.slice(1);
-            const units = convert().possibilities(raw as Measure);
-            setAvailableUnits(units);
-            setFromUnit(units[0]);
-            setToUnit(units[1] || units[0]);
+            const units = convert().possibilities(selectedCategory.value as Measure);
+            const formattedUnits = units.map((u) => ({
+                value: u,
+                label: u,
+            }));
+            setAvailableUnits(formattedUnits);
+            setFromUnit(formattedUnits[0]);
+            setToUnit(formattedUnits[1] || formattedUnits[0]);
         }
     }, [selectedCategory]);
     const handleConvert = () => {
         try {
             const result = convert(inputValue)
-                .from(fromUnit as Unit)
-                .to(toUnit as Unit);
+                .from(fromUnit?.value as Unit)
+                .to(toUnit?.value as Unit);
             setConvertedValue(Number(result).toString());
         } catch (err) {
             setConvertedValue("Invalid conversion");
@@ -52,51 +60,39 @@ function UnitConverter() {
                 <div className="unit-options">
                     <label>
                         Category:
-                        <select
+                        <Select
+                            className="category-menu"
+                            options={categories}
                             value={selectedCategory}
-                            onChange={(e) => {
-                                setSelectedCategory(e.target.value);
+                            onChange={(selected) => {
+                                setSelectedCategory(selected);
                                 setConvertedValue("");
                             }}
-                        >
-                            {categories.map((cat) => (
-                                <option key={cat} value={cat}>
-                                    {cat}
-                                </option>
-                            ))}
-                        </select>
+                        />
                     </label>
                     <label>
                         From:
-                        <select
+                        <Select
+                            className="unit-menu"
+                            options={availableUnits}
                             value={fromUnit}
-                            onChange={(e) => {
-                                setFromUnit(e.target.value);
+                            onChange={(selected) => {
+                                setFromUnit(selected);
                                 setConvertedValue("");
                             }}
-                        >
-                            {availableUnits.map((unit) => (
-                                <option key={unit} value={unit}>
-                                    {unit}
-                                </option>
-                            ))}
-                        </select>
+                        />
                     </label>
                     <label>
                         To:
-                        <select
+                        <Select
+                            className="unit-menu"
+                            options={availableUnits}
                             value={toUnit}
-                            onChange={(e) => {
-                                setToUnit(e.target.value);
+                            onChange={(selected) => {
+                                setToUnit(selected);
                                 setConvertedValue("");
                             }}
-                        >
-                            {availableUnits.map((unit) => (
-                                <option key={unit} value={unit}>
-                                    {unit}
-                                </option>
-                            ))}
-                        </select>
+                        />
                     </label>
                     <label>
                         Value:
@@ -113,7 +109,7 @@ function UnitConverter() {
                         type="text"
                         readOnly
                         size={"10000000000000000000000 mm".length}
-                        value={`${convertedValue ? `${convertedValue} ${toUnit}` : ""}`}
+                        value={convertedValue ? `${convertedValue} ${toUnit?.value}` : ""}
                     />
                 </div>
             </div>
