@@ -4,6 +4,7 @@ import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import Select from "react-select";
 import "../app.css";
 
 const ffmpeg = createFFmpeg();
@@ -46,7 +47,8 @@ function FileConverter() {
                 ffmpeg.FS("writeFile", file.name, await fetchFile(file));
                 await ffmpeg.run("-i", file.name, outputName);
                 const data = ffmpeg.FS("readFile", outputName);
-                const blob = new Blob([data.buffer], { type: file.type });
+                const uint8Data = new Uint8Array(data);
+                const blob = new Blob([uint8Data], { type: file.type });
                 saveAs(blob, outputName);
             }
         } catch (err) {
@@ -80,14 +82,18 @@ function FileConverter() {
                         </div>
                         <div className="format-select">
                             <label>Convert to:</label>
-                            <select value={targetFormat} onChange={(e) => setTargetFormat(e.target.value)}>
-                                <option value="">Select format</option>
-                                {conversionOptions[fileType as keyof typeof conversionOptions]?.map((fmt) => (
-                                    <option key={fmt} value={fmt}>
-                                        {fmt.toUpperCase()}
-                                    </option>
-                                ))}
-                            </select>
+                            <Select
+                                className="custom-select"
+                                classNamePrefix="select"
+                                value={targetFormat ? { value: targetFormat, label: targetFormat.toUpperCase() } : null}
+                                onChange={(option) => setTargetFormat(option ? option.value : "")}
+                                options={conversionOptions[fileType as keyof typeof conversionOptions]?.map((fmt) => ({
+                                    value: fmt,
+                                    label: fmt.toUpperCase(),
+                                }))}
+                                placeholder="Select format"
+                                isClearable={false}
+                            />
                         </div>
                         <button onClick={Convert} disabled={loading || !targetFormat}>
                             {loading ? "Converting..." : "Convert"}

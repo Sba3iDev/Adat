@@ -71,11 +71,10 @@ function Home() {
                 </div>
             </div>
             <div className="main-text">
-                <span className="primary-text">Discover highly useful Tools</span>
+                <span className="primary-text">Tools That Make Life Easier</span>
                 <span className="secondary-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id veritatis ea molestiae, laudantium doloribus
-                    repellendus? Quos provident at dolore saepe expedita, laborum pariatur, perspiciatis, quia a animi corrupti
-                    quibusdam similique.
+                    Discover our collection of powerful web tools designed to streamline your daily tasks. From file conversion
+                    to password generation, we've got everything you need in one place.
                 </span>
             </div>
             <div className="tools-container">

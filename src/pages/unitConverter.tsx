@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import convert, { type Measure, type Unit } from "convert-units";
@@ -45,6 +45,11 @@ function UnitConverter() {
             setConvertedValue("Invalid conversion");
         }
     };
+    function swapUnits() {
+        setFromUnit(toUnit);
+        setToUnit(fromUnit);
+        setConvertedValue("");
+    }
     return (
         <>
             <div className="header">
@@ -61,36 +66,57 @@ function UnitConverter() {
                     <label>
                         Category:
                         <Select
-                            className="category-menu"
+                            className="custom-select category-select"
+                            classNamePrefix="select"
                             options={categories}
                             value={selectedCategory}
                             onChange={(selected) => {
                                 setSelectedCategory(selected);
                                 setConvertedValue("");
                             }}
+                            isClearable={false}
+                            menuPortalTarget={document.body}
+                            styles={{
+                                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                            }}
                         />
                     </label>
                     <label>
                         From:
                         <Select
-                            className="unit-menu"
+                            className="custom-select unit-select"
+                            classNamePrefix="select"
                             options={availableUnits}
                             value={fromUnit}
                             onChange={(selected) => {
                                 setFromUnit(selected);
                                 setConvertedValue("");
                             }}
+                            isClearable={false}
+                            menuPortalTarget={document.body}
+                            styles={{
+                                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                            }}
                         />
                     </label>
+                    <button onClick={swapUnits}>
+                        <FontAwesomeIcon icon={faRightLeft} />
+                    </button>
                     <label>
                         To:
                         <Select
-                            className="unit-menu"
+                            className="custom-select unit-select"
+                            classNamePrefix="select"
                             options={availableUnits}
                             value={toUnit}
                             onChange={(selected) => {
                                 setToUnit(selected);
                                 setConvertedValue("");
+                            }}
+                            isClearable={false}
+                            menuPortalTarget={document.body}
+                            styles={{
+                                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
                             }}
                         />
                     </label>
