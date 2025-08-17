@@ -263,7 +263,19 @@ function CurrencyConverter() {
                 <div className="currency-form">
                     <label>
                         Amount
-                        <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
+                        <input
+                            type="number"
+                            min="0"
+                            value={amount}
+                            onChange={(e) => {
+                                setAmount(Number(e.target.value));
+                                setConvertedAmount(0);
+                            }}
+                            onBlur={(e) => {
+                                const val = Number(e.target.value);
+                                setAmount(Math.max(Number(e.target.min), val));
+                            }}
+                        />
                     </label>
                     <label>
                         From

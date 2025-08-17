@@ -36,6 +36,10 @@ function UnitConverter() {
         }
     }, [selectedCategory]);
     const handleConvert = () => {
+        if (isNaN(inputValue)) {
+            setConvertedValue("");
+            return;
+        }
         try {
             const result = convert(inputValue)
                 .from(fromUnit?.value as Unit)
@@ -122,7 +126,7 @@ function UnitConverter() {
                     </label>
                     <label>
                         Value:
-                        <input type="number" value={inputValue} onChange={(e) => setInputValue(Number(e.target.value))} />
+                        <input type="number" value={inputValue} onChange={(e) => setInputValue(parseFloat(e.target.value))} />
                     </label>
                 </div>
                 <button className="convert-btn" onClick={handleConvert}>
