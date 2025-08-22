@@ -553,6 +553,7 @@ body {
     color: var(--primary-text-color);
     gap: 10px;
     min-width: 150px;
+    position: relative;
 }
 
 .currency-form input {

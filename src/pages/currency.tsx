@@ -3,18 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
+import Flag from "react-world-flags";
 import "../app.css";
 
 type CurrencyRates = {
     [key: string]: number;
 };
-//todo: add flags
+
 const currencyToFlag: Record<string, string> = {
     aed: "ae",
     afn: "af",
     all: "al",
     amd: "am",
-    ang: "an",
+    ang: "cw",
     aoa: "ao",
     ars: "ar",
     ats: "at",
@@ -195,11 +196,10 @@ const currencyToFlag: Record<string, string> = {
     vnd: "vn",
     vuv: "vu",
     wst: "ws",
-    xaf: "xa",
-    xcd: "xc",
-    xdr: "xd",
-    xof: "xo",
-    xpf: "xp",
+    xaf: "cm",
+    xcd: "ag",
+    xof: "sn",
+    xpf: "pf",
     yer: "ye",
     zar: "za",
     zmk: "zm",
@@ -239,6 +239,30 @@ function CurrencyConverter() {
             setConvertedAmount(null);
         }
     };
+    const Option = ({ innerProps, label, data }: any) => (
+        <div
+            {...innerProps}
+            style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "6px 10px",
+                cursor: "pointer",
+                gap: "8px",
+            }}
+        >
+            <Flag
+                code={currencyToFlag[data.value]}
+                height={12}
+                style={{
+                    width: "25px",
+                    height: "15px",
+                    objectFit: "cover",
+                    borderRadius: "2px",
+                }}
+            />
+            <span>{label}</span>
+        </div>
+    );
     const currencyOptions = currencies.map((cur) => ({
         value: cur,
         label: cur.toUpperCase(),
@@ -279,6 +303,20 @@ function CurrencyConverter() {
                     </label>
                     <label>
                         From
+                        <Flag
+                            code={currencyToFlag[fromCurrency.value]}
+                            height={12}
+                            style={{
+                                position: "absolute",
+                                left: "60px",
+                                top: "31px",
+                                width: "45px",
+                                height: "28px",
+                                objectFit: "cover",
+                                borderRadius: "2px",
+                                zIndex: "10000",
+                            }}
+                        />
                         <Select
                             options={currencyOptions}
                             value={fromCurrency}
@@ -286,6 +324,7 @@ function CurrencyConverter() {
                                 setFromCurrency(option!);
                                 setConvertedAmount(0);
                             }}
+                            components={{ Option }}
                         />
                     </label>
                     <button onClick={swapCurrency}>
@@ -293,6 +332,20 @@ function CurrencyConverter() {
                     </button>
                     <label>
                         To
+                        <Flag
+                            code={currencyToFlag[toCurrency.value]}
+                            height={12}
+                            style={{
+                                position: "absolute",
+                                left: "60px",
+                                top: "31px",
+                                width: "45px",
+                                height: "28px",
+                                objectFit: "cover",
+                                borderRadius: "2px",
+                                zIndex: "10000",
+                            }}
+                        />
                         <Select
                             options={currencyOptions}
                             value={toCurrency}
@@ -300,6 +353,7 @@ function CurrencyConverter() {
                                 setToCurrency(option!);
                                 setConvertedAmount(0);
                             }}
+                            components={{ Option }}
                         />
                     </label>
                 </div>
