@@ -4,11 +4,8 @@ import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import Flag from "react-world-flags";
+import euFlag from "../assets/svgs/eu.svg";
 import "../app.css";
-
-type CurrencyRates = {
-    [key: string]: number;
-};
 
 const currencyToFlag: Record<string, string> = {
     aed: "ae",
@@ -22,7 +19,6 @@ const currencyToFlag: Record<string, string> = {
     aud: "au",
     awg: "aw",
     azm: "az",
-    azn: "az",
     bam: "ba",
     bbd: "bb",
     bdt: "bd",
@@ -38,18 +34,15 @@ const currencyToFlag: Record<string, string> = {
     btn: "bt",
     bwp: "bw",
     byn: "by",
-    byr: "by",
     bzd: "bz",
     cad: "ca",
     cdf: "cd",
     chf: "ch",
     clp: "cl",
     cnh: "cn",
-    cny: "cn",
     cop: "co",
     crc: "cr",
     cuc: "cu",
-    cup: "cu",
     cve: "cv",
     cyp: "cy",
     czk: "cz",
@@ -71,7 +64,6 @@ const currencyToFlag: Record<string, string> = {
     gel: "ge",
     ggp: "gg",
     ghc: "gh",
-    ghs: "gh",
     gip: "gi",
     gmd: "gm",
     gnf: "gn",
@@ -116,13 +108,11 @@ const currencyToFlag: Record<string, string> = {
     mad: "ma",
     mdl: "md",
     mga: "mg",
-    mgf: "mg",
     mkd: "mk",
     mmk: "mm",
     mnt: "mn",
     mop: "mo",
     mro: "mr",
-    mru: "mr",
     mtl: "mt",
     mur: "mu",
     mvr: "mv",
@@ -130,7 +120,6 @@ const currencyToFlag: Record<string, string> = {
     mxn: "mx",
     myr: "my",
     mzm: "mz",
-    mzn: "mz",
     nad: "na",
     ngn: "ng",
     nio: "ni",
@@ -149,7 +138,6 @@ const currencyToFlag: Record<string, string> = {
     pyg: "py",
     qar: "qa",
     rol: "ro",
-    ron: "ro",
     rsd: "rs",
     rub: "ru",
     rwf: "rw",
@@ -157,26 +145,21 @@ const currencyToFlag: Record<string, string> = {
     sbd: "sb",
     scr: "sc",
     sdd: "sd",
-    sdg: "sd",
     sek: "se",
     sgd: "sg",
     shp: "sh",
     sit: "si",
     skk: "sk",
     sle: "sl",
-    sll: "sl",
     sos: "so",
     srd: "sr",
-    srg: "sr",
     std: "st",
-    stn: "st",
     svc: "sv",
     syp: "sy",
     szl: "sz",
     thb: "th",
     tjs: "tj",
     tmm: "tm",
-    tmt: "tm",
     tnd: "tn",
     top: "to",
     try: "tr",
@@ -191,8 +174,6 @@ const currencyToFlag: Record<string, string> = {
     uzs: "uz",
     val: "va",
     veb: "ve",
-    vef: "ve",
-    ves: "ve",
     vnd: "vn",
     vuv: "vu",
     wst: "ws",
@@ -203,9 +184,7 @@ const currencyToFlag: Record<string, string> = {
     yer: "ye",
     zar: "za",
     zmk: "zm",
-    zmw: "zm",
     zwd: "zw",
-    zwl: "zw",
 };
 
 function CurrencyConverter() {
@@ -214,7 +193,7 @@ function CurrencyConverter() {
     const [toCurrency, setToCurrency] = useState({ value: "eur", label: "EUR" });
     const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
     const [currencies, setCurrencies] = useState<string[]>([]);
-    const [rates, setRates] = useState<CurrencyRates>({});
+    const [rates, setRates] = useState<{ [key: string]: number }>({});
     useEffect(() => {
         fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json")
             .then((res) => res.json())
@@ -252,6 +231,17 @@ function CurrencyConverter() {
         >
             <Flag
                 code={currencyToFlag[data.value]}
+                fallback={
+                    <img
+                        src={euFlag}
+                        style={{
+                            width: "25px",
+                            height: "15px",
+                            objectFit: "cover",
+                            borderRadius: "2px",
+                        }}
+                    />
+                }
                 height={12}
                 style={{
                     width: "25px",
@@ -305,6 +295,21 @@ function CurrencyConverter() {
                         From
                         <Flag
                             code={currencyToFlag[fromCurrency.value]}
+                            fallback={
+                                <img
+                                    src={euFlag}
+                                    style={{
+                                        position: "absolute",
+                                        left: "60px",
+                                        top: "31px",
+                                        width: "45px",
+                                        height: "28px",
+                                        objectFit: "cover",
+                                        borderRadius: "2px",
+                                        zIndex: "10000",
+                                    }}
+                                />
+                            }
                             height={12}
                             style={{
                                 position: "absolute",
@@ -334,6 +339,21 @@ function CurrencyConverter() {
                         To
                         <Flag
                             code={currencyToFlag[toCurrency.value]}
+                            fallback={
+                                <img
+                                    src={euFlag}
+                                    style={{
+                                        position: "absolute",
+                                        left: "60px",
+                                        top: "31px",
+                                        width: "45px",
+                                        height: "28px",
+                                        objectFit: "cover",
+                                        borderRadius: "2px",
+                                        zIndex: "10000",
+                                    }}
+                                />
+                            }
                             height={12}
                             style={{
                                 position: "absolute",

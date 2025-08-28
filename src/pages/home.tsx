@@ -5,7 +5,6 @@ import {
     faRuler,
     faQrcode,
     faDollarSign,
-    faEyeDropper,
     faSquareBinary,
     faSearch,
     faLanguage,
@@ -39,11 +38,6 @@ const tools = [
         path: "/currency-converter",
         name: "Currency Converter",
         icon: faDollarSign,
-    },
-    {
-        path: "/color-picker",
-        name: "Color Picker",
-        icon: faEyeDropper,
     },
     {
         path: "/numeral-system",

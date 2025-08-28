@@ -684,7 +684,7 @@ body {
 
 .custom-select .select__option--is-selected {
     background-color: var(--accent-color);
-    color: white;
+    color: #ffffff;
 }
 
 .custom-select .select__value-container {
