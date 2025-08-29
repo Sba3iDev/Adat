@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import PopupMessage from "../components/popupMessage";
 import "../app.css";
 
 function GeneratePassword(length: number, useUpper: boolean, useLower: boolean, useNumbers: boolean, useSymbols: boolean) {
@@ -25,10 +26,11 @@ function Password() {
     const [includeNumbers, setIncludeNumbers] = useState(true);
     const [includeSymbols, setIncludeSymbols] = useState(true);
     const [password, setPassword] = useState("");
-    const generate = () => {
+    const [trigger, setTrigger] = useState(0);
+    function Generate() {
         const newPass = GeneratePassword(length, includeUpper, includeLower, includeNumbers, includeSymbols);
         setPassword(newPass);
-    };
+    }
     const copyToClipboard = () => {
         navigator.clipboard.writeText(password);
     };
@@ -46,7 +48,14 @@ function Password() {
                 <div className="tool-info">Customize your password</div>
                 <div className="password-display">
                     <input value={password} readOnly />
-                    <button onClick={copyToClipboard}>
+                    <button
+                        onClick={() => {
+                            copyToClipboard();
+                            if (password) {
+                                setTrigger((prev) => prev + 1);
+                            }
+                        }}
+                    >
                         <FontAwesomeIcon icon={faCopy} />
                     </button>
                 </div>
@@ -83,10 +92,11 @@ function Password() {
                         Symbols
                     </label>
                 </div>
-                <button className="password-generate-btn" onClick={generate}>
+                <button className="password-generate-btn" onClick={Generate}>
                     Generate Password
                 </button>
             </div>
+            <PopupMessage message="Copied to clipboard" trigger={trigger} />
         </>
     );
 }

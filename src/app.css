@@ -162,35 +162,6 @@ body {
     font-size: 16px;
 }
 
-.move-up {
-    position: fixed;
-    right: 15px;
-    bottom: 15px;
-    background-color: var(--card-bg);
-    border-radius: 50%;
-    box-shadow: var(--hover-shadow);
-    font-size: 20px;
-    width: 50px;
-    height: 50px;
-    z-index: 2000;
-    transition: all 0.3s ease;
-    opacity: 0;
-}
-.move-up.visible {
-    opacity: 1;
-    cursor: pointer;
-}
-.move-up:hover {
-    background-color: var(--primary-background-color);
-}
-
-.move-up .arrow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .tool-container {
     display: flex;
     flex-direction: column;
@@ -339,27 +310,7 @@ body {
     align-items: center;
     gap: 10px;
     margin: 0 auto;
-}
-
-.format-select,
-.category-select,
-.unit-select {
     width: 200px;
-}
-
-.file-details button {
-    background: linear-gradient(to right, var(--accent-color), var(--accent-light));
-    color: #ffffff;
-    border: none;
-    padding: 14px 28px;
-    font-size: 16px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    font-weight: 600;
-}
-.file-details button:hover {
-    background-color: #464646;
 }
 
 .unit-options {
@@ -652,6 +603,7 @@ body {
 
 .password-generate-btn,
 .file-upload-btn,
+.file-details button,
 .convert-btn,
 .currency-convert-btn,
 .qr-btns button {
@@ -670,6 +622,7 @@ body {
 }
 .password-generate-btn:hover,
 .file-upload-btn:hover,
+.file-details button:hover,
 .convert-btn:hover,
 .currency-convert-btn:hover,
 .qr-btns button:hover {
@@ -755,4 +708,53 @@ body {
 
 .custom-select .select__single-value {
     color: var(--primary-text-color);
+}
+
+.move-up {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    box-shadow: var(--hover-shadow);
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    z-index: 2000;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+.move-up.visible {
+    opacity: 1;
+    cursor: pointer;
+}
+.move-up:hover {
+    background-color: var(--primary-background-color);
+}
+
+.move-up .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup {
+    position: fixed;
+    left: 50%;
+    bottom: -100px;
+    transform: translateX(-50%);
+    background: var(--button-hover);
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: bottom 0.4s ease, opacity 0.4s ease;
+}
+
+.popup.show {
+    bottom: 30px;
+    opacity: 1;
 }

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import Select from "react-select";
+import PopupMessage from "../components/popupMessage";
 import "../app.css";
 
 const ffmpeg = createFFmpeg();
@@ -28,6 +29,7 @@ function FileConverter() {
     const [targetFormat, setTargetFormat] = useState("");
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [trigger, setTrigger] = useState(0);
     function HandleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
         const selected = e.target.files?.[0];
         if (!selected) return;
@@ -95,12 +97,21 @@ function FileConverter() {
                                 isClearable={false}
                             />
                         </div>
-                        <button onClick={Convert} disabled={loading || !targetFormat}>
+                        <button
+                            onClick={() => {
+                                Convert();
+                                if (!failed) {
+                                    setTrigger((prev) => prev + 1);
+                                }
+                            }}
+                            disabled={loading || !targetFormat}
+                        >
                             {loading ? "Converting..." : "Convert"}
                         </button>
                     </div>
                 )}
             </div>
+            <PopupMessage message="Convert file started" trigger={trigger} />
         </>
     );
 }
