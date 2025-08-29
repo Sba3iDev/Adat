@@ -28,7 +28,7 @@ function FileConverter() {
     const [targetFormat, setTargetFormat] = useState("");
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
-    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function HandleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
         const selected = e.target.files?.[0];
         if (!selected) return;
         setFile(selected);
@@ -70,7 +70,7 @@ function FileConverter() {
             <div className="tool-container">
                 <div className="tool-info">Upload your media to convet it</div>
                 <div className="file-upload-btn">
-                    <input type="file" id="fileInput" onChange={handleFileChange} />
+                    <input type="file" id="fileInput" onChange={HandleFileChange} />
                     <label htmlFor="fileInput">Click here to upload</label>
                 </div>
                 {file && (

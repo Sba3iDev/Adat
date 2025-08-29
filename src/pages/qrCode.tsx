@@ -24,14 +24,14 @@ function QRCode() {
             }
         });
     };
-    const handleDownload = () => {
+    function DownloadQrcode() {
         const canvas = canvasRef.current;
         if (!canvas) return;
         canvas.toBlob((blob) => {
             if (!blob) return;
             saveAs(blob, "qrcode.png");
         });
-    };
+    }
     return (
         <>
             <div className="header">
@@ -57,7 +57,7 @@ function QRCode() {
                             <button onClick={handleCopyImage}>
                                 <FontAwesomeIcon icon={faCopy} /> Copy QR code
                             </button>
-                            <button onClick={handleDownload}>
+                            <button onClick={DownloadQrcode}>
                                 <FontAwesomeIcon icon={faDownload} /> Save as PNG
                             </button>
                         </div>

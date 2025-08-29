@@ -1,14 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faLock,
-    faFile,
-    faRuler,
-    faQrcode,
-    faDollarSign,
-    faSquareBinary,
-    faSearch,
-    faLanguage,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLock, faFile, faRuler, faQrcode, faDollarSign, faSquareBinary, faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
 import "../app.css";
@@ -59,9 +50,6 @@ function Home() {
                     <Link className="title" to="/">
                         Adat
                     </Link>
-                </div>
-                <div className="search">
-                    <FontAwesomeIcon icon={faSearch} />
                 </div>
             </div>
             <div className="main-text">

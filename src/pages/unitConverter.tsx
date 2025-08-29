@@ -16,9 +16,9 @@ function UnitConverter() {
     const [convertedValue, setConvertedValue] = useState<string>("");
     useEffect(() => {
         const allMeasures = convert().measures();
-        const formatted = allMeasures.map((m) => ({
-            value: m,
-            label: m.charAt(0).toUpperCase() + m.slice(1),
+        const formatted = allMeasures.map((measure) => ({
+            value: measure,
+            label: measure.charAt(0).toUpperCase() + measure.slice(1),
         }));
         setCategories(formatted);
         setSelectedCategory(formatted[0]);
@@ -26,16 +26,16 @@ function UnitConverter() {
     useEffect(() => {
         if (selectedCategory) {
             const units = convert().possibilities(selectedCategory.value as Measure);
-            const formattedUnits = units.map((u) => ({
-                value: u,
-                label: u,
+            const formattedUnits = units.map((unit) => ({
+                value: unit,
+                label: unit,
             }));
             setAvailableUnits(formattedUnits);
             setFromUnit(formattedUnits[0]);
-            setToUnit(formattedUnits[1] || formattedUnits[0]);
+            setToUnit(formattedUnits[1]);
         }
     }, [selectedCategory]);
-    const handleConvert = () => {
+    function ConvertUnit() {
         if (isNaN(inputValue)) {
             setConvertedValue("");
             return;
@@ -48,8 +48,8 @@ function UnitConverter() {
         } catch (err) {
             setConvertedValue("Invalid conversion");
         }
-    };
-    function swapUnits() {
+    }
+    function SwapUnits() {
         setFromUnit(toUnit);
         setToUnit(fromUnit);
         setConvertedValue("");
@@ -103,7 +103,7 @@ function UnitConverter() {
                             }}
                         />
                     </label>
-                    <button onClick={swapUnits}>
+                    <button onClick={SwapUnits}>
                         <FontAwesomeIcon icon={faRightLeft} />
                     </button>
                     <label>
@@ -129,13 +129,13 @@ function UnitConverter() {
                         <input type="number" value={inputValue} onChange={(e) => setInputValue(parseFloat(e.target.value))} />
                     </label>
                 </div>
-                <button className="convert-btn" onClick={handleConvert}>
+                <button className="convert-btn" onClick={ConvertUnit}>
                     Convert
                 </button>
                 <div className="result">
                     <span>Result:</span>
                     <input
-                        className="converted-result"
+                        className="converted-output"
                         type="text"
                         readOnly
                         size={"10000000000000000000000 mm".length}

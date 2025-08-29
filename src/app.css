@@ -28,7 +28,7 @@ body {
 
 .nav {
     padding: 20px 40px;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     background-color: var(--card-bg);
     border-radius: 20px;
@@ -67,26 +67,6 @@ body {
     font-weight: 700;
     cursor: pointer;
     z-index: 2;
-}
-
-.search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-    background-color: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--hover-shadow);
-    cursor: pointer;
-    font-size: 24px;
-    margin: 0px 5px;
-    color: var(--accent-color);
-    transition: all var(--transition-speed) ease;
-}
-.search:hover {
-    transform: scale(1.05);
-    background-color: var(--accent-color);
-    color: var(--card-bg);
 }
 
 .main-text {
@@ -456,20 +436,6 @@ body {
     margin-right: 30px;
 }
 
-.converted-result,
-.currency-output {
-    padding: 16px 24px;
-    font-size: 20px;
-    border: 2px solid var(--accent-light);
-    border-radius: 16px;
-    background-color: rgba(96, 165, 250, 0.05);
-    color: var(--primary-text-color);
-    text-align: center;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.08);
-    outline: none;
-}
-
 .qr-section {
     display: flex;
     align-items: center;
@@ -587,6 +553,25 @@ body {
     color: var(--card-bg);
 }
 
+.currency-name {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    font-size: 11px;
+    z-index: 1000;
+}
+
+.currency-flag {
+    position: absolute;
+    left: 60px;
+    top: 36px;
+    width: 45px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 2px;
+    z-index: 10000;
+}
+
 .currency-result {
     display: flex;
     align-items: center;
@@ -594,6 +579,75 @@ body {
     font-size: 22px;
     font-weight: 600;
     color: var(--primary-text-color);
+}
+
+.system-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.system-options label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+}
+
+.system-options input[type="text"] {
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 16px;
+    border: 2px solid var(--input-border);
+    min-width: 150px;
+    outline: none;
+    transition: all var(--transition-speed) ease;
+    background-color: var(--card-bg);
+}
+.system-options input[type="number"]:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
+.system-options button {
+    background-color: var(--card-bg);
+    font-size: 16px;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    color: var(--accent-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.system-options button:hover {
+    background-color: var(--accent-color);
+    color: var(--card-bg);
+}
+
+.system-select {
+    width: 200px;
+    line-height: 1.5;
+}
+
+.converted-output,
+.currency-output {
+    padding: 16px 24px;
+    font-size: 20px;
+    border: 2px solid var(--accent-light);
+    border-radius: 16px;
+    background-color: rgba(96, 165, 250, 0.05);
+    color: var(--primary-text-color);
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.08);
+    outline: none;
 }
 
 .password-generate-btn,

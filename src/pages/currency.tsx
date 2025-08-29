@@ -193,6 +193,7 @@ function CurrencyConverter() {
     const [toCurrency, setToCurrency] = useState({ value: "eur", label: "EUR" });
     const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
     const [currencies, setCurrencies] = useState<string[]>([]);
+    const [currenciesName, setCurrenciesName] = useState<Record<string, string>>({});
     const [rates, setRates] = useState<{ [key: string]: number }>({});
     useEffect(() => {
         fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json")
@@ -200,6 +201,7 @@ function CurrencyConverter() {
             .then((data) => {
                 const currencyList = Object.keys(data);
                 setCurrencies(currencyList.filter((curr) => currencyToFlag[curr]).sort());
+                setCurrenciesName(data);
             });
     }, []);
     useEffect(() => {
@@ -211,53 +213,18 @@ function CurrencyConverter() {
                 });
         }
     }, [fromCurrency]);
-    const handleConvert = () => {
+    function ConvertCurrrency() {
         if (rates[toCurrency.value]) {
             setConvertedAmount(amount * rates[toCurrency.value]);
         } else {
             setConvertedAmount(null);
         }
-    };
-    const Option = ({ innerProps, label, data }: any) => (
-        <div
-            {...innerProps}
-            style={{
-                display: "flex",
-                alignItems: "center",
-                padding: "6px 10px",
-                cursor: "pointer",
-                gap: "8px",
-            }}
-        >
-            <Flag
-                code={currencyToFlag[data.value]}
-                fallback={
-                    <img
-                        src={euFlag}
-                        style={{
-                            width: "25px",
-                            height: "15px",
-                            objectFit: "cover",
-                            borderRadius: "2px",
-                        }}
-                    />
-                }
-                height={12}
-                style={{
-                    width: "25px",
-                    height: "15px",
-                    objectFit: "cover",
-                    borderRadius: "2px",
-                }}
-            />
-            <span>{label}</span>
-        </div>
-    );
+    }
     const currencyOptions = currencies.map((cur) => ({
         value: cur,
         label: cur.toUpperCase(),
     }));
-    function swapCurrency() {
+    function SwapCurrency() {
         setFromCurrency(toCurrency);
         setToCurrency(fromCurrency);
         setConvertedAmount(0);
@@ -293,91 +260,47 @@ function CurrencyConverter() {
                     </label>
                     <label>
                         From
+                        <span className="currency-name">{currenciesName[fromCurrency.value]}</span>
                         <Flag
+                            className="currency-flag"
                             code={currencyToFlag[fromCurrency.value]}
-                            fallback={
-                                <img
-                                    src={euFlag}
-                                    style={{
-                                        position: "absolute",
-                                        left: "60px",
-                                        top: "31px",
-                                        width: "45px",
-                                        height: "28px",
-                                        objectFit: "cover",
-                                        borderRadius: "2px",
-                                        zIndex: "10000",
-                                    }}
-                                />
-                            }
-                            height={12}
-                            style={{
-                                position: "absolute",
-                                left: "60px",
-                                top: "31px",
-                                width: "45px",
-                                height: "28px",
-                                objectFit: "cover",
-                                borderRadius: "2px",
-                                zIndex: "10000",
-                            }}
+                            fallback={<img className="currency-flag" src={euFlag} />}
                         />
                         <Select
+                            className="custom-select"
+                            classNamePrefix="select"
                             options={currencyOptions}
                             value={fromCurrency}
                             onChange={(option) => {
                                 setFromCurrency(option!);
                                 setConvertedAmount(0);
                             }}
-                            components={{ Option }}
                         />
                     </label>
-                    <button onClick={swapCurrency}>
+                    <button onClick={SwapCurrency}>
                         <FontAwesomeIcon icon={faRightLeft} />
                     </button>
                     <label>
                         To
+                        <span className="currency-name">{currenciesName[toCurrency.value]}</span>
                         <Flag
+                            className="currency-flag"
                             code={currencyToFlag[toCurrency.value]}
-                            fallback={
-                                <img
-                                    src={euFlag}
-                                    style={{
-                                        position: "absolute",
-                                        left: "60px",
-                                        top: "31px",
-                                        width: "45px",
-                                        height: "28px",
-                                        objectFit: "cover",
-                                        borderRadius: "2px",
-                                        zIndex: "10000",
-                                    }}
-                                />
-                            }
-                            height={12}
-                            style={{
-                                position: "absolute",
-                                left: "60px",
-                                top: "31px",
-                                width: "45px",
-                                height: "28px",
-                                objectFit: "cover",
-                                borderRadius: "2px",
-                                zIndex: "10000",
-                            }}
+                            fallback={<img className="currency-flag" src={euFlag} />}
                         />
                         <Select
+                            className="custom-select"
+                            classNamePrefix="select"
                             options={currencyOptions}
                             value={toCurrency}
                             onChange={(option) => {
                                 setToCurrency(option!);
                                 setConvertedAmount(0);
                             }}
-                            components={{ Option }}
                         />
                     </label>
                 </div>
-                <button className="currency-convert-btn" onClick={handleConvert}>
+                <button className="currency-convert-btn" onClick={ConvertCurrrency}>
                     Convert
                 </button>
                 <div className="currency-result">
