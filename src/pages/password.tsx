@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import PopupMessage from "../components/popupMessage";
+import Footer from "../components/footer";
 import "../app.css";
 
 function GeneratePassword(length: number, useUpper: boolean, useLower: boolean, useNumbers: boolean, useSymbols: boolean) {
@@ -31,9 +32,12 @@ function Password() {
         const newPass = GeneratePassword(length, includeUpper, includeLower, includeNumbers, includeSymbols);
         setPassword(newPass);
     }
-    const copyToClipboard = () => {
+    function CopyToClipboard() {
         navigator.clipboard.writeText(password);
-    };
+    }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -50,7 +54,7 @@ function Password() {
                     <input value={password} readOnly />
                     <button
                         onClick={() => {
-                            copyToClipboard();
+                            CopyToClipboard();
                             if (password) {
                                 setTrigger((prev) => prev + 1);
                             }
@@ -97,6 +101,7 @@ function Password() {
                 </button>
             </div>
             <PopupMessage message="Copied to clipboard" trigger={trigger} />
+            <Footer />
         </>
     );
 }

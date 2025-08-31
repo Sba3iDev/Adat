@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import Select from "react-select";
 import PopupMessage from "../components/popupMessage";
+import Footer from "../components/footer";
 import "../app.css";
 
 const ffmpeg = createFFmpeg();
@@ -59,6 +60,9 @@ function FileConverter() {
         }
         setLoading(false);
     }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -69,7 +73,7 @@ function FileConverter() {
                     <span className="tool-title">File Converter</span>
                 </div>
             </div>
-            <div className="tool-container">
+            <div style={{ marginBottom: "380px" }} className="tool-container">
                 <div className="tool-info">Upload your media to convet it</div>
                 <div className="file-upload-btn">
                     <input type="file" id="fileInput" onChange={HandleFileChange} />
@@ -112,6 +116,7 @@ function FileConverter() {
                 )}
             </div>
             <PopupMessage message="Convert file started" trigger={trigger} />
+            <Footer />
         </>
     );
 }

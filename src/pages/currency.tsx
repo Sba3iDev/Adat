@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 import Flag from "react-world-flags";
 import euFlag from "../assets/svgs/eu.svg";
+import Footer from "../components/footer";
 import "../app.css";
 
 const currencyToFlag: Record<string, string> = {
@@ -229,6 +230,9 @@ function CurrencyConverter() {
         setToCurrency(fromCurrency);
         setConvertedAmount(0);
     }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -316,6 +320,7 @@ function CurrencyConverter() {
                     />
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

@@ -12,8 +12,9 @@
     "dependencies": {
         "@ffmpeg/ffmpeg": "^0.11.6",
         "@fortawesome/fontawesome-svg-core": "^7.0.0",
+        "@fortawesome/free-brands-svg-icons": "^7.0.0",
         "@fortawesome/free-solid-svg-icons": "^7.0.0",
-        "@fortawesome/react-fontawesome": "^0.2.3",
+        "@fortawesome/react-fontawesome": "^0.2.6",
         "convert-units": "^2.3.4",
         "file-saver": "^2.0.5",
         "qrcode.react": "^4.2.0",

@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faCopy, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
 import { saveAs } from "file-saver";
 import PopupMessage from "../components/popupMessage";
+import Footer from "../components/footer";
 import "../app.css";
 
 function QRCode() {
@@ -33,6 +34,9 @@ function QRCode() {
             saveAs(blob, "qrcode.png");
         });
     }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -90,6 +94,7 @@ function QRCode() {
             </div>
             <PopupMessage message="Copied to clipboard" trigger={trigger1} />
             <PopupMessage message="QR code saved" trigger={trigger2} />
+            <Footer />
         </>
     );
 }

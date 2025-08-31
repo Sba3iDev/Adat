@@ -3,6 +3,7 @@ import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import "../app.css";
+import Footer from "../components/footer";
 import { useEffect, useState } from "react";
 
 function Numeral() {
@@ -57,6 +58,9 @@ function Numeral() {
         setToSystem(fromSystem);
         setConvertedNumber("");
     }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -128,6 +132,7 @@ function Numeral() {
                     />
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

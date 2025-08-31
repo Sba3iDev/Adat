@@ -7,7 +7,7 @@ interface PopupMessageProps {
     duration?: number;
 }
 
-function PopupMessage({ message, trigger, duration = 3000 }: PopupMessageProps) {
+function PopupMessage({ message, trigger, duration = 1000 }: PopupMessageProps) {
     const [show, setShow] = useState(false);
     useEffect(() => {
         if (trigger) {

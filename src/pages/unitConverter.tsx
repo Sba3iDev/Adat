@@ -4,6 +4,7 @@ import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import convert, { type Measure, type Unit } from "convert-units";
+import Footer from "../components/footer";
 import "../app.css";
 
 function UnitConverter() {
@@ -54,6 +55,9 @@ function UnitConverter() {
         setToUnit(fromUnit);
         setConvertedValue("");
     }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -143,6 +147,7 @@ function UnitConverter() {
                     />
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faFile, faRuler, faQrcode, faDollarSign, faSquareBinary, faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
 import "../app.css";
+import Footer from "../components/footer";
 
 const tools = [
     {
@@ -43,6 +45,9 @@ const tools = [
 ];
 
 function Home() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="header">
@@ -55,21 +60,24 @@ function Home() {
             <div className="main-text">
                 <span className="primary-text">Tools That Make Life Easier</span>
                 <span className="secondary-text">
-                    Discover our collection of powerful web tools designed to streamline your daily tasks. From file conversion
-                    to password generation, we've got everything you need in one place.
+                    Discover our collection of powerful web tools designed to streamline your daily tasks. We've got everything
+                    you need in one place.
                 </span>
             </div>
             <div className="tools-container">
                 <div className="tools">
-                    {tools.map((tool) => (
-                        <Link className="tool" to={tool.path} key={tool.path}>
-                            <FontAwesomeIcon className="icon" icon={tool.icon} />
-                            <span>{tool.name}</span>
-                        </Link>
-                    ))}
+                    {tools
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((tool) => (
+                            <Link className="tool" to={tool.path} key={tool.path}>
+                                <FontAwesomeIcon className="icon" icon={tool.icon} />
+                                <span>{tool.name}</span>
+                            </Link>
+                        ))}
                 </div>
             </div>
             <ScrollToTopButton />
+            <Footer />
         </>
     );
 }
