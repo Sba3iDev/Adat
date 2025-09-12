@@ -262,7 +262,7 @@ function CurrencyConverter() {
                             }}
                         />
                     </label>
-                    <label>
+                    <label className="from-label">
                         From
                         <span className="currency-name">{currenciesName[fromCurrency.value]}</span>
                         <Flag
@@ -284,7 +284,7 @@ function CurrencyConverter() {
                     <button onClick={SwapCurrency}>
                         <FontAwesomeIcon icon={faRightLeft} />
                     </button>
-                    <label>
+                    <label className="to-label">
                         To
                         <span className="currency-name">{currenciesName[toCurrency.value]}</span>
                         <Flag

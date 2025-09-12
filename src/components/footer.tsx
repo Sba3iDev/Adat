@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import "../app.css";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import "../app.css";
 
 function Footer() {
     return (

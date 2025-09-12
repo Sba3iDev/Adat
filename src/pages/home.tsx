@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock, faFile, faRuler, faQrcode, faDollarSign, faSquareBinary, faLanguage } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faFile, faRuler, faQrcode, faDollarSign, faSquareBinary } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
-import "../app.css";
 import Footer from "../components/footer";
+import "../app.css";
 
 const tools = [
     {
@@ -36,11 +36,6 @@ const tools = [
         path: "/numeral-system",
         name: "Numeral System",
         icon: faSquareBinary,
-    },
-    {
-        path: "/translator",
-        name: "Translator",
-        icon: faLanguage,
     },
 ];
 

@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
-import "../app.css";
 import Footer from "../components/footer";
-import { useEffect, useState } from "react";
+import "../app.css";
 
 function Numeral() {
     const [systems, setSystems] = useState<{ value: number; label: string }[]>([]);

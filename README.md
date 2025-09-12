@@ -1,69 +1,92 @@
-# React + TypeScript + Vite
+# Adat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Adat is a modern web application built with React and TypeScript that provides a collection of powerful tools to streamline your daily tasks. The application features a clean, responsive interface and offers various utility tools in one convenient place.
 
-Currently, two official plugins are available:
+## Features
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Password Generator**: Create secure passwords with customizable options for length, characters, and symbols
+-   **File Converter**: Convert various file formats including images, videos, and audio files
+-   **Unit Converter**: Convert between different units of measurement with support for multiple categories
+-   **QR Code Generator**: Generate QR codes from text or URLs with options to copy or download
+-   **Currency Converter**: Real-time currency conversion with support for multiple currencies and live rates
+-   **Numeral System Converter**: Convert numbers between different numeral systems (Binary, Octal, Decimal, Hexadecimal)
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   **Frontend Framework**: React 19 with TypeScript
+-   **Routing**: React Router DOM
+-   **Build Tool**: Vite
+-   **Styling**: Custom CSS with CSS Variables for theming
+-   **Icons**: Font Awesome
+-   **Additional Libraries**:
+    -   `@ffmpeg/ffmpeg` for file conversions
+    -   `convert-units` for unit conversions
+    -   `qrcode.react` for QR code generation
+    -   `react-select` for dropdown components
+    -   `react-world-flags` for currency flags
+    -   `file-saver` for file downloads
 
-```js
-export default tseslint.config([
-    globalIgnores(["dist"]),
-    {
-        files: ["**/*.{ts,tsx}"],
-        extends: [
-            // Other configs...
+## Getting Started
 
-            // Remove tseslint.configs.recommended and replace with this
-            ...tseslint.configs.recommendedTypeChecked,
-            // Alternatively, use this for stricter rules
-            ...tseslint.configs.strictTypeChecked,
-            // Optionally, add this for stylistic rules
-            ...tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-            // Other configs...
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-                tsconfigRootDir: import.meta.dirname,
-            },
-            // other options...
-        },
-    },
-]);
+-   Node.js (Latest LTS version recommended)
+-   npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd adat
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config([
-    globalIgnores(["dist"]),
-    {
-        files: ["**/*.{ts,tsx}"],
-        extends: [
-            // Other configs...
-            // Enable lint rules for React
-            reactX.configs["recommended-typescript"],
-            // Enable lint rules for React DOM
-            reactDom.configs.recommended,
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-                tsconfigRootDir: import.meta.dirname,
-            },
-            // other options...
-        },
-    },
-]);
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+The built files will be available in the `dist` directory.
+
+## Project Structure
+
+```
+src/
+  ├── assets/         # Static assets like SVGs
+  ├── components/     # Reusable React components
+  ├── pages/         # Page components for each tool
+  ├── app.tsx        # Main app component
+  ├── app.css        # Global styles
+  ├── main.tsx       # Application entry point
+  └── vite-env.d.ts  # TypeScript environment declarations
+```
+
+## Development
+
+-   **TypeScript**: The project uses TypeScript for type safety
+-   **ESLint**: Code linting is configured with custom rules
+-   **Vite**: Fast development server and build tool
