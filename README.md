@@ -84,9 +84,3 @@ src/
   ├── main.tsx       # Application entry point
   └── vite-env.d.ts  # TypeScript environment declarations
 ```
-
-## Development
-
--   **TypeScript**: The project uses TypeScript for type safety
--   **ESLint**: Code linting is configured with custom rules
--   **Vite**: Fast development server and build tool
