@@ -4,34 +4,32 @@ Adat is a modern web application built with React and TypeScript that provides a
 
 ## Features
 
--   **Password Generator**: Create secure passwords with customizable options for length, characters, and symbols
--   **File Converter**: Convert various file formats including images, videos, and audio files
--   **Unit Converter**: Convert between different units of measurement with support for multiple categories
--   **QR Code Generator**: Generate QR codes from text or URLs with options to copy or download
--   **Currency Converter**: Real-time currency conversion with support for multiple currencies and live rates
--   **Numeral System Converter**: Convert numbers between different numeral systems (Binary, Octal, Decimal, Hexadecimal)
+- **Password Generator**: Create secure passwords with customizable options for length, characters, and symbols
+- **Unit Converter**: Convert between different units of measurement with support for multiple categories
+- **QR Code Generator**: Generate QR codes from text or URLs with options to copy or download
+- **Currency Converter**: Real-time currency conversion with support for multiple currencies and live rates
+- **Numeral System Converter**: Convert numbers between different numeral systems (Binary, Octal, Decimal, Hexadecimal)
 
 ## Technologies Used
 
--   **Frontend Framework**: React 19 with TypeScript
--   **Routing**: React Router DOM
--   **Build Tool**: Vite
--   **Styling**: Custom CSS with CSS Variables for theming
--   **Icons**: Font Awesome
--   **Additional Libraries**:
-    -   `@ffmpeg/ffmpeg` for file conversions
-    -   `convert-units` for unit conversions
-    -   `qrcode.react` for QR code generation
-    -   `react-select` for dropdown components
-    -   `react-world-flags` for currency flags
-    -   `file-saver` for file downloads
+- **Frontend Framework**: React 19 with TypeScript
+- **Routing**: React Router DOM
+- **Build Tool**: Vite
+- **Styling**: Custom CSS with CSS Variables for theming
+- **Icons**: Font Awesome
+- **Additional Libraries**:
+    - `convert-units` for unit conversions
+    - `qrcode.react` for QR code generation
+    - `react-select` for dropdown components
+    - `react-world-flags` for currency flags
+    - `file-saver` for file downloads
 
 ## Getting Started
 
 ### Prerequisites
 
--   Node.js (Latest LTS version recommended)
--   npm or yarn
+- Node.js (Latest LTS version recommended)
+- npm or yarn
 
 ### Installation
 

@@ -263,35 +263,6 @@ body {
     box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
 }
 
-.file-upload-btn input[type="file"] {
-    display: none;
-}
-
-.file-upload-btn label {
-    cursor: pointer;
-}
-
-.file-details {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    text-align: center;
-    gap: 20px;
-}
-
-.file-preview {
-    font-size: 18px;
-    color: var(--primary-text-color);
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    background-color: rgba(96, 165, 250, 0.05);
-    border-radius: 12px;
-    border: 2px solid var(--accent-light);
-}
-
 .failed-msg {
     color: var(--error-color);
     display: none;
@@ -302,17 +273,6 @@ body {
 }
 .failed-msg.visible {
     display: block;
-}
-
-.file-type {
-    padding: 8px 16px;
-    background: linear-gradient(to right, var(--accent-color), var(--accent-light));
-    color: #ffffff;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
 }
 
 .format-select {
@@ -621,8 +581,6 @@ body {
 }
 
 .password-generate-btn,
-.file-upload-btn,
-.file-details button,
 .convert-btn,
 .currency-convert-btn,
 .qr-btns button {
@@ -640,8 +598,6 @@ body {
     box-shadow: 0 4px 15px rgba(96, 165, 250, 0.2);
 }
 .password-generate-btn:hover,
-.file-upload-btn:hover,
-.file-details button:hover,
 .convert-btn:hover,
 .currency-convert-btn:hover,
 .qr-btns button:hover {
@@ -771,7 +727,9 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     opacity: 0;
     pointer-events: none;
-    transition: bottom 0.4s ease, opacity 0.4s ease;
+    transition:
+        bottom 0.4s ease,
+        opacity 0.4s ease;
 }
 
 .popup.show {
@@ -882,14 +840,6 @@ body {
         max-width: 100%;
         height: auto;
     }
-    .file-details {
-        width: 100%;
-    }
-    .file-preview {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
     .format-select {
         width: 100%;
     }
@@ -992,8 +942,6 @@ body {
         font-size: 14px;
     }
     .password-generate-btn,
-    .file-upload-btn,
-    .file-details button,
     .convert-btn,
     .currency-convert-btn,
     .qr-btns button {
