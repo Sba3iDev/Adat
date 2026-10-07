@@ -9,6 +9,7 @@ Adat is a modern web application built with React and TypeScript that provides a
 - **QR Code Generator**: Generate QR codes from text or URLs with options to copy or download
 - **Currency Converter**: Real-time currency conversion with support for multiple currencies and live rates
 - **Numeral System Converter**: Convert numbers between different numeral systems (Binary, Octal, Decimal, Hexadecimal)
+- **Arabic Text Converter**: Convert and reshape Arabic text to display correctly in applications without native Arabic support
 
 ## Technologies Used
 
