@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 import Flag from "react-world-flags";
 import euFlag from "../assets/svgs/eu.svg";
+import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
 import "../app.css";
 
@@ -320,6 +321,7 @@ function CurrencyConverter() {
                     />
                 </div>
             </div>
+            <ScrollToTopButton />
             <Footer />
         </>
     );

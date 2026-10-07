@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
 import { saveAs } from "file-saver";
 import PopupMessage from "../components/popupMessage";
+import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
 import "../app.css";
 
@@ -94,6 +95,7 @@ function QRCode() {
             </div>
             <PopupMessage message="Copied to clipboard" trigger={trigger1} />
             <PopupMessage message="QR code saved" trigger={trigger2} />
+            <ScrollToTopButton />
             <Footer />
         </>
     );

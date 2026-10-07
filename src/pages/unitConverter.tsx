@@ -4,6 +4,7 @@ import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import convert, { type Measure, type Unit } from "convert-units";
+import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
 import "../app.css";
 
@@ -147,6 +148,7 @@ function UnitConverter() {
                     />
                 </div>
             </div>
+            <ScrollToTopButton />
             <Footer />
         </>
     );

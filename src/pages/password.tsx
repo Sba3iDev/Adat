@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import PopupMessage from "../components/popupMessage";
+import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
 import "../app.css";
 
@@ -101,6 +102,7 @@ function Password() {
                 </button>
             </div>
             <PopupMessage message="Copied to clipboard" trigger={trigger} />
+            <ScrollToTopButton />
             <Footer />
         </>
     );

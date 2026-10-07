@@ -566,6 +566,37 @@ body {
     line-height: 1.5;
 }
 
+.arabic-textarea-label {
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--primary-text-color);
+    margin-bottom: -15px;
+}
+
+.arabic-textarea-label + textarea {
+    width: 80%;
+    min-height: 120px;
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    outline: none;
+    transition: all var(--transition-speed) ease;
+    background-color: var(--card-bg);
+    color: var(--primary-text-color);
+    resize: vertical;
+    font-family: inherit;
+}
+.arabic-textarea-label + textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
 .converted-output,
 .currency-output {
     padding: 16px 24px;
@@ -583,7 +614,8 @@ body {
 .password-generate-btn,
 .convert-btn,
 .currency-convert-btn,
-.qr-btns button {
+.qr-btns button,
+.arabic-text-convert-btn {
     background: linear-gradient(to right, var(--accent-color), var(--accent-light));
     color: #ffffff;
     border: none;
@@ -600,7 +632,8 @@ body {
 .password-generate-btn:hover,
 .convert-btn:hover,
 .currency-convert-btn:hover,
-.qr-btns button:hover {
+.qr-btns button:hover,
+.arabic-text-convert-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(96, 165, 250, 0.3);
     background: linear-gradient(to right, var(--button-hover), var(--accent-color));
@@ -826,7 +859,9 @@ body {
     .qr-form {
         width: 100%;
     }
-    .qr-input {
+    .qr-input,
+    .arabic-textarea-label,
+    .arabic-textarea-label + textarea {
         width: 100%;
     }
     .qr-btns {

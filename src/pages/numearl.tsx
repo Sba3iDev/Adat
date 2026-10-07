@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Select from "react-select";
+import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
 import "../app.css";
 
@@ -132,6 +133,7 @@ function Numeral() {
                     />
                 </div>
             </div>
+            <ScrollToTopButton />
             <Footer />
         </>
     );

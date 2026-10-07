@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock, faRuler, faQrcode, faDollarSign, faSquareBinary } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faRuler, faQrcode, faDollarSign, faSquareBinary, faParagraph } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
@@ -31,6 +31,11 @@ const tools = [
         path: "/numeral-system",
         name: "Numeral System",
         icon: faSquareBinary,
+    },
+    {
+        path: "/arabic-text-converter",
+        name: "Arabic Text Converter",
+        icon: faParagraph,
     },
 ];
 

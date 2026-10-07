@@ -5,6 +5,7 @@ import UnitConverter from "./pages/unitConverter";
 import QrCode from "./pages/qrCode";
 import CurrencyConverter from "./pages/currency";
 import Numeral from "./pages/numearl";
+import ArabicTextConverter from "./pages/arabicTextConverter";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/qr-code" element={<QrCode />} />
             <Route path="/currency-converter" element={<CurrencyConverter />} />
             <Route path="/numeral-system" element={<Numeral />} />
+            <Route path="/arabic-text-converter" element={<ArabicTextConverter />} />
         </Routes>
     );
 }
