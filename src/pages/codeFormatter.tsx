@@ -234,8 +234,14 @@ function CodeFormatter() {
             setBusy(false);
         }
     }
-    function CopyToClipboard() {
-        navigator.clipboard.writeText(output);
+    async function CopyToClipboard() {
+        try {
+            await navigator.clipboard.writeText(output);
+            setError(null);
+            setTrigger((prev) => prev + 1);
+        } catch (e) {
+            setError(`Failed to copy to clipboard: ${e instanceof Error ? e.message : String(e)}`);
+        }
     }
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -325,12 +331,7 @@ function CodeFormatter() {
                             <span className="code-editor-title">Formatted Code</span>
                             <button
                                 className="code-copy-btn"
-                                onClick={() => {
-                                    CopyToClipboard();
-                                    if (output) {
-                                        setTrigger((prev) => prev + 1);
-                                    }
-                                }}
+                                onClick={CopyToClipboard}
                                 disabled={!output}
                             >
                                 <FontAwesomeIcon icon={faCopy} /> Copy
