@@ -189,6 +189,14 @@ const currencyToFlag: Record<string, string> = {
     zwd: "zw",
 };
 
+function formatCurrency(value: number): string {
+    if (value === 0) return "0.00";
+    const abs = Math.abs(value);
+    if (abs >= 0.01) return value.toFixed(2);
+    const decimals = Math.min(20, -Math.floor(Math.log10(abs)));
+    return value.toFixed(decimals);
+}
+
 function CurrencyConverter() {
     const [amount, setAmount] = useState(1);
     const [fromCurrency, setFromCurrency] = useState({ value: "usd", label: "USD" });
@@ -317,7 +325,9 @@ function CurrencyConverter() {
                         type="text"
                         readOnly
                         size={"10000000000000 CUR".length}
-                        value={convertedAmount ? `${Number(convertedAmount).toString()} ${toCurrency.label}` : ""}
+                        value={
+                            convertedAmount ? `${Number(formatCurrency(convertedAmount)).toString()} ${toCurrency.label}` : ""
+                        }
                     />
                 </div>
             </div>
