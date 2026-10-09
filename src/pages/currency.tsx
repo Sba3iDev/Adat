@@ -325,9 +325,7 @@ function CurrencyConverter() {
                         type="text"
                         readOnly
                         size={"10000000000000 CUR".length}
-                        value={
-                            convertedAmount ? `${Number(formatCurrency(convertedAmount)).toString()} ${toCurrency.label}` : ""
-                        }
+                        value={convertedAmount ? `${formatCurrency(convertedAmount)} ${toCurrency.label}` : ""}
                     />
                 </div>
             </div>
