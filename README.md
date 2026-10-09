@@ -10,6 +10,7 @@ Adat is a modern web application built with React and TypeScript that provides a
 - **Currency Converter**: Real-time currency conversion with support for multiple currencies and live rates
 - **Numeral System Converter**: Convert numbers between different numeral systems (Binary, Octal, Decimal, Hexadecimal)
 - **Arabic Text Converter**: Convert and reshape Arabic text to display correctly in applications without native Arabic support
+- **Code Formatter**: Format and beautify code in multiple languages (JavaScript, TypeScript, HTML, CSS, JSON, Markdown, YAML, GraphQL) with automatic language detection, customizable indentation, and formatting rules
 
 ## Technologies Used
 
@@ -19,6 +20,7 @@ Adat is a modern web application built with React and TypeScript that provides a
 - **Styling**: Custom CSS with CSS Variables for theming
 - **Icons**: Font Awesome
 - **Additional Libraries**:
+    - `prettier` for code formatting and parsing
     - `convert-units` for unit conversions
     - `qrcode.react` for QR code generation
     - `react-select` for dropdown components

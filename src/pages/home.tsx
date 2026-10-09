@@ -1,6 +1,14 @@
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock, faRuler, faQrcode, faDollarSign, faSquareBinary, faParagraph } from "@fortawesome/free-solid-svg-icons";
+import {
+    faLock,
+    faRuler,
+    faQrcode,
+    faDollarSign,
+    faSquareBinary,
+    faParagraph,
+    faCode,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
@@ -36,6 +44,11 @@ const tools = [
         path: "/arabic-text-converter",
         name: "Arabic Text Converter",
         icon: faParagraph,
+    },
+    {
+        path: "/code-formatter",
+        name: "Code Formatter",
+        icon: faCode,
     },
 ];
 

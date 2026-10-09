@@ -141,11 +141,18 @@ function ArabicTextConverter() {
                 <label className="arabic-textarea-label" htmlFor="ar-input">
                     Arabic text:
                 </label>
-                <textarea id="ar-input" dir="rtl" lang="ar" value={input} onChange={(e) => setInput(e.target.value)} />
+                <textarea
+                    className="arabic-textarea"
+                    id="ar-input"
+                    dir="rtl"
+                    lang="ar"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                />
                 <label className="arabic-textarea-label" htmlFor="ar-output">
                     Converted text:
                 </label>
-                <textarea id="ar-output" readOnly value={output} />
+                <textarea className="arabic-textarea" id="ar-output" readOnly value={output} />
                 <button
                     className="arabic-text-convert-btn"
                     onClick={() => {
