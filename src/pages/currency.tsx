@@ -2,12 +2,18 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import Select from "react-select";
+import Select, { createFilter } from "react-select";
 import Flag from "react-world-flags";
 import euFlag from "../assets/svgs/eu.svg";
 import ScrollToTopButton from "../components/scrollTopButton";
 import Footer from "../components/footer";
 import "../app.css";
+
+interface CurrencyOption {
+    value: string;
+    label: string;
+    country: string;
+}
 
 const currencyToFlag: Record<string, string> = {
     aed: "ae",
@@ -189,6 +195,190 @@ const currencyToFlag: Record<string, string> = {
     zwd: "zw",
 };
 
+const countries: Record<string, string> = {
+    aed: "United Arab Emirates",
+    afn: "Afghanistan",
+    all: "Albania",
+    amd: "Armenia",
+    ang: "Curaçao",
+    aoa: "Angola",
+    ars: "Argentina",
+    ats: "Austria",
+    aud: "Australia",
+    awg: "Aruba",
+    azm: "Azerbaijan",
+    bam: "Bosnia and Herzegovina",
+    bbd: "Barbados",
+    bdt: "Bangladesh",
+    bef: "Belgium",
+    bgn: "Bulgaria",
+    bhd: "Bahrain",
+    bif: "Burundi",
+    bmd: "Bermuda",
+    bnd: "Brunei",
+    bob: "Bolivia",
+    brl: "Brazil",
+    bsd: "Bahamas",
+    btn: "Bhutan",
+    bwp: "Botswana",
+    byn: "Belarus",
+    bzd: "Belize",
+    cad: "Canada",
+    cdf: "Democratic Republic of the Congo",
+    chf: "Switzerland",
+    clp: "Chile",
+    cnh: "China",
+    cop: "Colombia",
+    crc: "Costa Rica",
+    cuc: "Cuba",
+    cve: "Cape Verde",
+    cyp: "Cyprus",
+    czk: "Czech Republic",
+    djf: "Djibouti",
+    dkk: "Denmark",
+    dop: "Dominican Republic",
+    dzd: "Algeria",
+    eek: "Estonia",
+    egp: "Egypt",
+    ern: "Eritrea",
+    esp: "Spain",
+    etb: "Ethiopia",
+    eur: "European Union",
+    fim: "Finland",
+    fjd: "Fiji",
+    fkp: "Falkland Islands",
+    frf: "France",
+    gbp: "United Kingdom",
+    gel: "Georgia",
+    ggp: "Guernsey",
+    ghc: "Ghana",
+    gip: "Gibraltar",
+    gmd: "Gambia",
+    gnf: "Guinea",
+    grd: "Greece",
+    gtq: "Guatemala",
+    gyd: "Guyana",
+    hkd: "Hong Kong",
+    hnl: "Honduras",
+    hrk: "Croatia",
+    htg: "Haiti",
+    huf: "Hungary",
+    idr: "Indonesia",
+    iep: "Ireland",
+    imp: "Isle of Man",
+    inr: "India",
+    iqd: "Iraq",
+    irr: "Iran",
+    isk: "Iceland",
+    itl: "Italy",
+    jep: "Jersey",
+    jmd: "Jamaica",
+    jod: "Jordan",
+    jpy: "Japan",
+    kes: "Kenya",
+    kgs: "Kyrgyzstan",
+    khr: "Cambodia",
+    kmf: "Comoros",
+    kpw: "North Korea",
+    krw: "South Korea",
+    kwd: "Kuwait",
+    kyd: "Cayman Islands",
+    kzt: "Kazakhstan",
+    lak: "Laos",
+    lbp: "Lebanon",
+    lkr: "Sri Lanka",
+    lrd: "Liberia",
+    lsl: "Lesotho",
+    ltl: "Lithuania",
+    luf: "Luxembourg",
+    lvl: "Latvia",
+    lyd: "Libya",
+    mad: "Morocco",
+    mdl: "Moldova",
+    mga: "Madagascar",
+    mkd: "North Macedonia",
+    mmk: "Myanmar",
+    mnt: "Mongolia",
+    mop: "Macau",
+    mro: "Mauritania",
+    mtl: "Malta",
+    mur: "Mauritius",
+    mvr: "Maldives",
+    mwk: "Malawi",
+    mxn: "Mexico",
+    myr: "Malaysia",
+    mzm: "Mozambique",
+    nad: "Namibia",
+    ngn: "Nigeria",
+    nio: "Nicaragua",
+    nlg: "Netherlands",
+    nok: "Norway",
+    npr: "Nepal",
+    nzd: "New Zealand",
+    omr: "Oman",
+    pab: "Panama",
+    pen: "Peru",
+    pgk: "Papua New Guinea",
+    php: "Philippines",
+    pkr: "Pakistan",
+    pln: "Poland",
+    pte: "Portugal",
+    pyg: "Paraguay",
+    qar: "Qatar",
+    rol: "Romania",
+    rsd: "Serbia",
+    rub: "Russia",
+    rwf: "Rwanda",
+    sar: "Saudi Arabia",
+    sbd: "Solomon Islands",
+    scr: "Seychelles",
+    sdd: "Sudan",
+    sek: "Sweden",
+    sgd: "Singapore",
+    shp: "Saint Helena",
+    sit: "Slovenia",
+    skk: "Slovakia",
+    sle: "Sierra Leone",
+    sos: "Somalia",
+    srd: "Suriname",
+    std: "São Tomé and Príncipe",
+    svc: "El Salvador",
+    syp: "Syria",
+    szl: "Eswatini",
+    thb: "Thailand",
+    tjs: "Tajikistan",
+    tmm: "Turkmenistan",
+    tnd: "Tunisia",
+    top: "Tonga",
+    try: "Turkey",
+    ttd: "Trinidad and Tobago",
+    tvd: "Tuvalu",
+    twd: "Taiwan",
+    tzs: "Tanzania",
+    uah: "Ukraine",
+    ugx: "Uganda",
+    usd: "United States",
+    uyu: "Uruguay",
+    uzs: "Uzbekistan",
+    val: "Vatican City",
+    veb: "Venezuela",
+    vnd: "Vietnam",
+    vuv: "Vanuatu",
+    wst: "Samoa",
+    xaf: "Cameroon",
+    xcd: "Antigua and Barbuda",
+    xof: "Senegal",
+    xpf: "French Polynesia",
+    yer: "Yemen",
+    zar: "South Africa",
+    zmk: "Zambia",
+    zwd: "Zimbabwe",
+};
+
+const filterByCountry = createFilter<CurrencyOption>({
+    stringify: (option) => `${option.data.country} ${option.data.value} ${option.data.label}`,
+});
+
 function formatCurrency(value: number): string {
     if (value === 0) return "0.00";
     const abs = Math.abs(value);
@@ -199,8 +389,16 @@ function formatCurrency(value: number): string {
 
 function CurrencyConverter() {
     const [amount, setAmount] = useState(1);
-    const [fromCurrency, setFromCurrency] = useState({ value: "usd", label: "USD" });
-    const [toCurrency, setToCurrency] = useState({ value: "eur", label: "EUR" });
+    const [fromCurrency, setFromCurrency] = useState<CurrencyOption>({
+        value: "usd",
+        label: "USD",
+        country: countries["usd"],
+    });
+    const [toCurrency, setToCurrency] = useState<CurrencyOption>({
+        value: "eur",
+        label: "EUR",
+        country: countries["eur"],
+    });
     const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
     const [currencies, setCurrencies] = useState<string[]>([]);
     const [currenciesName, setCurrenciesName] = useState<Record<string, string>>({});
@@ -230,9 +428,10 @@ function CurrencyConverter() {
             setConvertedAmount(null);
         }
     }
-    const currencyOptions = currencies.map((cur) => ({
+    const currencyOptions: CurrencyOption[] = currencies.map((cur) => ({
         value: cur,
         label: cur.toUpperCase(),
+        country: countries[cur] ?? "",
     }));
     function SwapCurrency() {
         setFromCurrency(toCurrency);
@@ -279,11 +478,13 @@ function CurrencyConverter() {
                             code={currencyToFlag[fromCurrency.value]}
                             fallback={<img className="currency-flag" src={euFlag} />}
                         />
-                        <Select
+                        <Select<CurrencyOption>
                             className="custom-select"
                             classNamePrefix="select"
                             options={currencyOptions}
                             value={fromCurrency}
+                            filterOption={filterByCountry}
+                            placeholder="Search by country or code..."
                             onChange={(option) => {
                                 setFromCurrency(option!);
                                 setConvertedAmount(0);
@@ -301,11 +502,13 @@ function CurrencyConverter() {
                             code={currencyToFlag[toCurrency.value]}
                             fallback={<img className="currency-flag" src={euFlag} />}
                         />
-                        <Select
+                        <Select<CurrencyOption>
                             className="custom-select"
                             classNamePrefix="select"
                             options={currencyOptions}
                             value={toCurrency}
+                            filterOption={filterByCountry}
+                            placeholder="Search by country or code..."
                             onChange={(option) => {
                                 setToCurrency(option!);
                                 setConvertedAmount(0);
