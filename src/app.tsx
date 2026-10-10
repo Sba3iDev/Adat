@@ -7,6 +7,7 @@ import CurrencyConverter from "./pages/currency";
 import Numeral from "./pages/numearl";
 import ArabicTextConverter from "./pages/arabicTextConverter";
 import CodeFormatter from "./pages/codeFormatter";
+import WordCounter from "./pages/wordCounter";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/numeral-system" element={<Numeral />} />
             <Route path="/arabic-text-converter" element={<ArabicTextConverter />} />
             <Route path="/code-formatter" element={<CodeFormatter />} />
+            <Route path="/word-counter" element={<WordCounter />} />
         </Routes>
     );
 }

@@ -75,7 +75,7 @@ function Password() {
                             onChange={(e) => setLength(parseInt(e.target.value))}
                             onBlur={(e) => {
                                 const val = parseInt(e.target.value);
-                                if (isNaN(val)) return;
+                                if (isNaN(val)) e.target.value = e.target.min;
                                 setLength(Math.max(parseInt(e.target.min), Math.min(parseInt(e.target.max), val)));
                             }}
                         />

@@ -246,6 +246,15 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.password-options label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-color);
+    cursor: pointer;
 }
 
 .password-options input[type="number"] {
@@ -622,6 +631,7 @@ body {
     gap: 8px;
     cursor: pointer;
     margin-top: 26px;
+    user-select: none;
 }
 
 .code-options label.checkbox-label input[type="checkbox"] {
@@ -758,6 +768,140 @@ body {
     box-sizing: border-box;
 }
 
+.counter-field {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.counter-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.counter-textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    outline: none;
+    transition: all var(--transition-speed) ease;
+    background-color: var(--card-bg);
+    color: var(--primary-text-color);
+    resize: vertical;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.counter-textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
+.counter-search-section {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.counter-input-group {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.counter-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    outline: none;
+    transition: all var(--transition-speed) ease;
+    background-color: var(--card-bg);
+    color: var(--primary-text-color);
+    box-sizing: border-box;
+}
+.counter-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
+.counter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+.counter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+.counter-checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+.counter-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.counter-result-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+}
+
+.count-number-input {
+    min-width: 140px;
+    max-width: 220px;
+    padding: 14px 24px;
+    font-size: 24px;
+    font-weight: 700;
+    border: 2px solid var(--accent-light);
+    border-radius: 16px;
+    background-color: rgba(96, 165, 250, 0.05);
+    color: var(--primary-text-color);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.08);
+    outline: none;
+    transition: all var(--transition-speed) ease;
+    box-sizing: border-box;
+}
+
+.count-number-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
 .converted-output,
 .currency-output {
     padding: 16px 24px;
@@ -777,7 +921,8 @@ body {
 .currency-convert-btn,
 .qr-btns button,
 .arabic-text-convert-btn,
-.format-code-btn {
+.format-code-btn,
+.word-count-btn {
     background: linear-gradient(to right, var(--accent-color), var(--accent-light));
     color: #ffffff;
     border: none;
@@ -796,7 +941,8 @@ body {
 .currency-convert-btn:hover,
 .qr-btns button:hover,
 .arabic-text-convert-btn:hover,
-.format-code-btn:hover {
+.format-code-btn:hover,
+.word-count-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(96, 165, 250, 0.3);
     background: linear-gradient(to right, var(--button-hover), var(--accent-color));
@@ -1097,6 +1243,29 @@ body {
     .code-error {
         height: 260px;
     }
+    .counter-field,
+    .counter-search-section {
+        width: 100%;
+    }
+    .counter-search-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .counter-input-group {
+        width: 100%;
+    }
+    .counter-checkbox-label {
+        margin-bottom: 0px;
+    }
+    .word-count-btn {
+        width: 100%;
+        max-width: 320px;
+    }
+    .count-number-input {
+        font-size: 20px;
+        padding: 12px 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1201,9 +1370,31 @@ body {
     .currency-convert-btn,
     .qr-btns button,
     .arabic-text-convert-btn,
-    .format-code-btn {
+    .format-code-btn,
+    .word-count-btn {
         padding: 12px 20px;
         font-size: 14px;
+    }
+    .counter-options {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .word-count-btn {
+        width: 100%;
+    }
+    .counter-textarea {
+        min-height: 140px;
+    }
+    .counter-label {
+        font-size: 16px;
+    }
+    .counter-checkbox-label {
+        margin-bottom: 0px;
+    }
+    .counter-result-label {
+        font-size: 18px;
     }
     .move-up {
         right: 10px;

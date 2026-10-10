@@ -8,6 +8,7 @@ import {
     faSquareBinary,
     faParagraph,
     faCode,
+    faFont,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../components/scrollTopButton";
@@ -49,6 +50,11 @@ const tools = [
         path: "/code-formatter",
         name: "Code Formatter",
         icon: faCode,
+    },
+    {
+        path: "/word-counter",
+        name: "Word Counter",
+        icon: faFont,
     },
 ];
 
